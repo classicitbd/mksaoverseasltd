@@ -50,7 +50,7 @@
         <div class="row">
             <div class="col-md-6 mb-4 mb-md-0">
                 @foreach($frontlogo as $val)
-                 <img src="{{asset('public/img/'.$val->logo_img)}}" height="85px" width="85px" alt="MKsaoverseas LTD" class="lazyloaded" data-ll-status="loaded">
+                 <img src="{{asset('img/'.$val->logo_img)}}" height="85px" width="85px" alt="MKsaoverseas LTD" class="lazyloaded" data-ll-status="loaded">
                 @endforeach
             </div>
 

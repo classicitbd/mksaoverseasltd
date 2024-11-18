@@ -38,7 +38,6 @@ use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\CountController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\FrequentsectionController;
-//use App\Http\Controllers\ChoosesectionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustompageController;
 use App\Http\Controllers\BoardofdirectorController;
@@ -63,6 +62,7 @@ use App\Http\Controllers\DiplomatrainingController;
 use App\Http\Controllers\OurclientController;
 use App\Http\Controllers\WhychooseusController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -91,15 +91,7 @@ Route::get('home', function(){
 
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'home'])->name('home');
 
-
 Route::get('home', [App\Http\Controllers\FrontendController::class, 'home'])->name('home');
-
-
-//Route::get('/', [App\Http\Controllers\FrontendController::class, 'home'])->name('index');
-
-////////////////////Home/////////////////////////
-// Route::get('/home',[FrontendController::class,'index' ]);
-
 
 ////////////////////Contact/////////////////////////
 Route::get('/contact',[ContactController::class,'index' ]);
@@ -205,8 +197,6 @@ Route::get('admin', function(){
 
 Auth::routes();
 
-
-
 Route::group(['middleware' =>  'auth'], function() {
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
@@ -293,6 +283,12 @@ Route::get('edit-contactus/{id}',[ContactusController::class,'edit' ]);
 Route::put('contactus-update',[ContactusController::class,'update' ]);
 Route::delete('delete-contactus',[ContactusController::class,'destroy' ]);
 
+
+// Setting All Route
+Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+Route::post('/settings/update', [SettingController::class, 'update'])->name('update.settings');
+// Route::get('/settings', [SettingController ::class, 'index'])->name('setting');
+// Route::post('/settings/update', [SettingController::class, 'update'])->name('update.setting');
 
 
 ////////////////////Business-categories/////////////////////////

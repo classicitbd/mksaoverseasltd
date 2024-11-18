@@ -346,54 +346,13 @@
                     </div>
                     <p style="font-size: 16px; color: #ffffff">{!!$val->detail!!}</p>
                     <div class="ot-button">
-                        <a href="{{asset('public/attach-file/'.$val->attach_file)}}" class="octf-btn octf-btn-primary" style="border-radius: 38px; height: 45px;" target="_blank">DOWNLOAD OUR COMPANY PROFILE</a>;
+                        <a href="{{asset('attach-file/'.$val->attach_file)}}" class="octf-btn octf-btn-primary" style="border-radius: 38px; height: 45px;" target="_blank">DOWNLOAD OUR COMPANY PROFILE</a>;
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
     </section>
-
-    {{-- <section class="team-v3">
-        <div class="container">
-            <div class="space-115"></div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="ot-heading">
-                        <span>// our team</span>
-                        <h2 class="main-heading">Our Leadership Team</h2>
-                    </div>
-                    <div class="space-5"></div>
-                    <p>SYSCON have well experienced skill professional team who can provide you modern & innovative idea<br>for your requirement as well as economic fruitful solution.</p>
-                    <div class="space-20"></div>
-                </div>
-            </div>
-            <div class="row no-margin">
-                @foreach($team as $val)
-                <div class="col-lg-3 col-md-6 no-padding">
-                    <div class="team-wrap v3">
-                        <div class="team-thumb">
-                            <img src="{{asset('img/'.$val->image)}}" alt="">
-                            <div class="team-social flex-middle">
-                                <div>
-                                    <a rel="nofollow" href="{{$val->twitter}}" class="twitter"><i class="fab fa-twitter"></i></a>
-                                    <a rel="nofollow" href="{{$val->linkedin}}" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
-                                    <a rel="nofollow" href="{{$val->facebook}}" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                    <a rel="nofollow" href="{{$val->instagram}}" class="instagram"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h6>{{$val->name}}</h6>
-                            <span>{{$val->qualification}}</span>
-                            <p>{{$val->designation}}</p>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section> --}}
 
     <section class="faq pt-5">
         <div class="container">
@@ -469,7 +428,7 @@
                                 <div class="projects-box">
                                     <div class="projects-thumbnail">
                                         <a href="{{$val->url}}">
-                                            <img src="{{ asset('public/img/' . $val->image) }}" alt="">
+                                            <img src="{{ asset('img/' . $val->image) }}" alt="">
                                         </a>
                                     </div>
                                     <div class="portfolio-info">
@@ -501,7 +460,7 @@
                             <div class="partners-slide">
                                 <a href="#" class="client-logo">
                                     <figure class="partners-slide-inner">
-                                        <img class="partners-slide-image" src="{{ asset('public/img/' . $val->image) }}" alt="">
+                                        <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
                                     </figure>
                                 </a>
                             </div>
@@ -521,9 +480,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-
        $("#snd_msg").click(function(){
-
       $.ajaxSetup({
         headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -548,6 +505,5 @@
         }
        });
     });
-
-    </script>
+</script>
 @endsection
