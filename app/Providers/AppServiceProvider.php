@@ -28,34 +28,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-        //return $service;
-
-        //View()->share($data);
-
-        // $data['frontlogo'] = Frontlogo::select('logo_img')->first();
-        // View()->share($data);
-       
-       // View::share($servicecategories);
-
        View::composer('*', function($view)
        {
-        $data=Frontlogo::all(); 
+        $data=Frontlogo::all();
         View::share('frontlogo', $data);
        });
 
        View::composer('*', function($view1)
        {
-        $data=Menu::all(); 
+        $data=Menu::all();
         View::share('menu', $data);
        });
-       
+
        View::composer('*', function($view2)
        {
-        $data=Choosesection::all(); 
+        $data=Choosesection::all();
         View::share('choosesection', $data);
        });
-
 
     }
 }

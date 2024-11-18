@@ -32,7 +32,7 @@
                             <div id="site-logo" class="site-logo">
                                 @foreach ($frontlogo as $val)
                                     <a href="{{url('/')}}">
-                                        <img src="{{ asset('public/img/' . $val->logo_img) }}" alt="MKsaoverseas LTD"
+                                        <img src="{{ asset('img/' . $val->logo_img) }}" alt="MKsaoverseas LTD"
                                             class="logo">
                                     </a>
                                 @endforeach
@@ -46,7 +46,7 @@
                                         <a href="#">ABOUT US<i class="fa fa-chevron-down" style="font-size: 9px;" aria-hidden="true"></i></a>
                                         <ul class="sub-menu">
                                             @foreach($choosesection as $val)
-                                                <li><a href="{{asset('public/attach-file/'.$val->attach_file)}}" target="_blank">COMPANY PROFILE</a></li>
+                                                <li><a href="{{asset('attach-file/'.$val->attach_file)}}" target="_blank">COMPANY PROFILE</a></li>
                                             @endforeach
                                             <li><a href="{{url('/boardofdirectors')}}">BOARD OF DIRECTORS</a></li>
                                             <li><a href="{{url('/our-management-team')}}">MANAGEMENT TEAM</a></li>
@@ -89,7 +89,7 @@
                 <div class="mobile_logo">
                     @foreach ($frontlogo as $val)
                     <a href="{{url('/')}}">
-                        <img src="{{ asset('public/img/' . $val->logo_img) }}" alt="MKsaoverseas LTD">
+                        <img src="{{ asset('img/' . $val->logo_img) }}" alt="MKsaoverseas LTD">
                     </a>
                     @endforeach
                 </div>
