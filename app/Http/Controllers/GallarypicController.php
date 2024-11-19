@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Gallerycategory;
-use App\Models\Partner;
+use App\Models\Ourclient;
+use App\Models\Gallery;
 
 class GallarypicController extends Controller
 {
     public function index()
     {
 
-        $data['gallerycatrgories'] = Gallerycategory::select('id', 'gc_name', 'g_group', 'title', 'image', 'url')->get();
+        $gallery = Gallery::where('type', 1)->get();
+        $video = Gallery::where('type', 2)->get();
+        $client = Ourclient::select('id', 'c_name', 'logo_img')->get();
+        return view('frontend.gallary.index', compact('client', 'gallery', 'video'));
 
-        $data['partner'] = Partner::select('id','image')->get();
-        // View()->share($partner);
-
-        return view('frontend.gallary.index', $data);
-        
     }
 }

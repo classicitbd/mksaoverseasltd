@@ -6,12 +6,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Business Category</h1>
+					<h1 class="m-0">Service Category</h1>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="{{url('/admin')}}">Home</a></li>
-						<li class="breadcrumb-item active">Business Category</li>
+						<li class="breadcrumb-item active">Service Category</li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -22,7 +22,7 @@
   	<!-- /Page Header -->
 	<div class="row">
         <div class="col-auto float-right ml-auto pb-2" >
-            <a href="#"  class="btn btn-success btn-block" data-toggle="modal" data-target="#add_category"><i class="fa fa-plus"></i>Add Category</a> 
+            <a href="#"  class="btn btn-success btn-block" data-toggle="modal" data-target="#add_category"><i class="fa fa-plus"></i>Add Category</a>
         </div>
 	</div>
 	<!-- /Page Header -->
@@ -33,25 +33,24 @@
                     <tr>
                       <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
 					  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Sub-Menu</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Business Category</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Service Category</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Created Date</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                 </thead>
-                <tbody> 
-                    @forelse ($businesscategories as $businesscategories)
+                <tbody>
+                    @forelse ($businesscategories as $key=> $businesscategories)
                     <tr class="odd">
-                        <td>{{$businesscategories-> id}}</td>
+                        <td>{{ $key+1 }}</td>
 						<td>{{$businesscategories-> m_name}}</td>
                         <td>{{$businesscategories-> bc_name}}</td>
                         <td>{{$businesscategories-> created_at}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_businesscategories"><i class="fas fa-eye"></i></a>&nbsp;
 								<button type="button" value="{{$businesscategories->id}}" class="btn btn-primary" id="editbusinesscategories" ><i class="fas fa-pencil-alt" ></i> </button>&nbsp;
                                 <button type="button" value="{{$businesscategories->id}}" class="btn btn-danger" id="businesscategoriesDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>
-                        </td>   
+                        </td>
                     </tr>
 					@empty
 						<div colspan="14">No records found</div>
@@ -94,7 +93,7 @@
 
 							<div class="input-group mb-4">
 								<div class="col-sm-2">
-									<label class="col-form-label">Category of Business:&nbsp;</label>
+									<label class="col-form-label">Category of Service:&nbsp;</label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="txtCategoryOfBusiness" name="txtCategoryOfBusiness"required>
@@ -136,7 +135,7 @@
 				<form action="{{url('businesscategories-update')}}"  method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
-				
+
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="input-group mb-4">
@@ -156,7 +155,7 @@
 
 							<div class="input-group mb-4">
 								<div class="col-sm-2">
-									<label class="col-form-label">Category of Business:&nbsp;</label>
+									<label class="col-form-label">Category of Service:&nbsp;</label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="eBusinesscategories" name="txtCategoryOfBusiness" required>
@@ -171,7 +170,7 @@
 									<input type="text" class="form-control" id="eURL" name="txtURL">
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
 
 						<div class="submit-section float-right">
@@ -201,7 +200,7 @@
 								@csrf
 								@method("DELETE")
                                 <input type="hidden" id="delete_businesscategoriesId" name="d_businesscategories">
-                                <button type="submit" class="btn btn-danger continue-btn">Delete</button>		
+                                <button type="submit" class="btn btn-danger continue-btn">Delete</button>
 							</form>
 						</div>
 						<div class="col-6">
@@ -235,16 +234,16 @@
 				type: "GET",
 				url: "/edit-businesscategories/"+eid,
 				success:function(response){
-					// console.log(response.businesscategories.name);	
-					$('#cmbBusinesscategoriesId').val(eid);	
-					$('#eSubmenu').val(response.businesscategories.sub_menu);	
+					// console.log(response.businesscategories.name);
+					$('#cmbBusinesscategoriesId').val(eid);
+					$('#eSubmenu').val(response.businesscategories.sub_menu);
 					$('#eBusinesscategories').val(response.businesscategories.bc_name);
 					$('#eURL').val(response.businesscategories.url);
-					
+
 				}
 			});
 		});
-    
+
 	});
 
 </script>

@@ -15,12 +15,13 @@ class CreateContactusesTable extends Migration
     {
         Schema::create('contactuses', function (Blueprint $table) {
             $table->bigIncrements('id')->primary;
-            $table->string('title');
-            $table->string('heading');
-            $table->longText('details');
-            $table->string('address');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('title')->nullable();
+            $table->string('address_1')->nullable();
+            $table->string('address_2')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->longText('details')->nullable();
+            $table->string('image')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

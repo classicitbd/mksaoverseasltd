@@ -4,11 +4,7 @@
     <div class="page-header flex-middle">
         <div class="container">
             <div class="inner flex-middle">
-                <h1 class="page-title" style="font-weight:600;">About Us</h1>
-                <ul id="breadcrumbs" class="breadcrumbs none-style">
-                    <li><a href="{{url('/home')}}">Home</a></li>
-                    <li class="active">About Us</li>
-                </ul>
+                <h1 class="page-title" style="font-weight:600; text-align: center;">About Us</h1>
             </div>
         </div>
     </div>
@@ -159,7 +155,7 @@
                             <div class="partners-slide">
                                 <a href="#" class="client-logo">
                                     <figure class="partners-slide-inner">
-                                        <img class="partners-slide-image" src="{{ asset('public/img/' . $val->image) }}" alt="">
+                                        <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
                                     </figure>
                                 </a>
                             </div>

@@ -9,7 +9,7 @@
                     <li><a href="{{url('/home')}}">Home</a></li>
                     <li><a href="{{url('/about')}}">About Us</a></li>
                     <li class="active">Mission & Vission</li>
-                </ul>    
+                </ul>
             </div>
         </div>
     </div>
@@ -63,56 +63,38 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="owl-carousel owl-theme project-slider">
-                    <div class="project-item projects-style-2">
-                        <div class="projects-box">
-                            <div class="projects-thumbnail">
-                                <a href="">
-                                    <img src="{{url('frontend/images/mission1.webp')}}" class="" alt="">                         
-                                    <span class="overlay"></span>
-                                </a>
+                    @foreach($mission as $val)
+                        <div class="project-item projects-style-2">
+                            <div class="projects-box">
+                                <div class="projects-thumbnail">
+                                    <a href="#">
+                                        <img src="{{ asset('img/' . $val->image) }}" class="" alt="">
+                                        <span class="overlay"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-item projects-style-2">
-                        <div class="projects-box">
-                            <div class="projects-thumbnail">
-                                <a href="">
-                                    <img src="{{url('frontend/images/mission2.webp')}}" class="" alt="">                         
-                                    <span class="overlay"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-item projects-style-2">
-                        <div class="projects-box">
-                            <div class="projects-thumbnail">
-                                <a href="">
-                                    <img src="{{url('frontend/images/mission3.webp')}}" class="" alt="">                         
-                                    <span class="overlay"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="pt-5">  
+    <section class="pt-5">
         <div class="padding-half bg-light-1">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="partners">
-                            <div class="owl-carousel owl-theme home-client-carousel"> 
-                                @foreach($partner as $val)     
-                                <div class="partners-slide">
-                                    <a href="#" class="client-logo">
-                                        <figure class="partners-slide-inner">
-                                            <img class="partners-slide-image" src="{{ asset('public/img/' . $val->image) }}" alt="">
-                                        </figure>                             
-                                    </a>
-                                </div>
+                            <div class="owl-carousel owl-theme home-client-carousel">
+                                @foreach($partner as $val)
+                                    <div class="partners-slide">
+                                        <a href="#" class="client-logo">
+                                            <figure class="partners-slide-inner">
+                                                <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
+                                            </figure>
+                                        </a>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -122,6 +104,4 @@
         </div>
     </section>
 </div>
-
-
 @endsection

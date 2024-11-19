@@ -22,7 +22,7 @@
       <!-- /Page Header -->
 	<div class="row">
         <div class="col-auto float-right ml-auto pb-2" >
-            <a href="#"  class="btn btn-success btn-block" data-toggle="modal" data-target="#add_team"><i class="fa fa-plus"></i>Add Team Member</a> 
+            <a href="#"  class="btn btn-success btn-block" data-toggle="modal" data-target="#add_team"><i class="fa fa-plus"></i>Add Team Member</a>
         </div>
 	</div>
 	<!-- /Page Header -->
@@ -33,28 +33,29 @@
                 <thead>
                     <tr>
                       <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Name</th>
-					  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Qualification</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Image</th>
+					  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Name</th>
+					  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Type</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Designation</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Created Date</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                 </thead>
-                <tbody> 
-                    @forelse ($team as $team)
+                <tbody>
+                    @forelse ($team as $key=> $team)
                     <tr class="odd">
-                        <td>{{$team-> id}}</td>
-                        <td>{{$team-> name}}</td>
-						<td>{{$team-> qualification}}</td>
-                        <td>{{$team-> designation}}</td>
+                        <td>{{$key+1}}</td>
+						<td><img src="{{asset('img/'.$team->image)}}" height="70px" width="70px" alt=""></td>
+                        <td>{{$team-> name ?? ''}}</td>
+						<td>{{$team-> type ?? ''}}</td>
+                        <td>{{$team-> designation ?? ''}}</td>
                         <td>{{$team-> created_at}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_team"><i class="fas fa-eye"></i></a>&nbsp;
 								<button type="button" value="{{$team->id}}" class="btn btn-primary" id="editteam" ><i class="fas fa-pencil-alt" ></i> </button>&nbsp;
                                 <button type="button" value="{{$team->id}}" class="btn btn-danger" id="teamDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>
-                        </td>   
+                        </td>
                     </tr>
 					@empty
 						<div colspan="14">No records found</div>
@@ -83,7 +84,7 @@
                         <div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Name:&nbsp;</label>
+									<label class="col-form-label">Name:&nbsp;<span class="text-danger">*</span></label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="txtName" name="txtName" required>
@@ -94,7 +95,7 @@
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Qualification:&nbsp;</label>
+									<label class="col-form-label">Qualification:&nbsp;<span class="text-danger">*</span></label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="txtQualification" name="txtQualification" required>
@@ -102,10 +103,26 @@
 							</div>
 						</div>
 
+						<div class="col-sm-12">
+							<div class="input-group mb-5">
+								<div class="col-sm-2">
+									<label class="col-form-label">Type:&nbsp;<span class="text-danger">*</span></label>
+								</div>
+								<div class="col-sm-10">
+									<select id="txtType" class="form-control" name="txtType" required>
+										<option selected><---Select Type---></option>
+										<option value="Managing Director">Managing Director</option>
+										<option value="Sales & Marketing">Sales & Marketing</option>
+										<option value="Accounts Management and Executives">Accounts Management and Executives</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
                         <div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Designation:&nbsp;</label>
+									<label class="col-form-label">Designation:&nbsp;<span class="text-danger">*</span></label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="txtDesignation" name="txtDesignation" required>
@@ -117,7 +134,7 @@
                         <div class="col-sm-12">
                             <div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Details:&nbsp;</label>
+									<label class="col-form-label">Details:&nbsp;<span class="text-danger">*</span></label>
 								</div>
                                 <div class="col-sm-10">
 									<textarea name="txtDetails" id="txtDetails" class="summernote"></textarea>
@@ -125,58 +142,13 @@
                             </div>
                         </div>
 
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Twitter:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="txtTwitter" name="txtTwitter" required>
-								</div>
-							</div>
-						</div>
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Facebook:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="txtFacebook" name="txtFacebook" required>
-								</div>
-							</div>
-						</div>
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Instagram:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="txtInstagram" name="txtInstagram" required>
-								</div>
-							</div>
-						</div>
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Linkedin:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="txtLinkedin" name="txtLinkedin" required>
-								</div>
-							</div>
-						</div>
-
                         <div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
 									<label class="col-form-label">Photo:&nbsp;</label>
 								</div>
 								<div class="col-sm-10">
-									<input type="file" class="form-control" id="filePhoto" name="filePhoto" required>
+									<input type="file" class="form-control" id="filePhoto" name="filePhoto">
 								</div>
 							</div>
 						</div>
@@ -207,13 +179,13 @@
 				<form action="{{url('team-update')}}"  method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
-				
+
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<input type="hidden" value="" id="cmbTeamId" name="cmbTeamId" >
 								<div class="col-sm-2">
-									<label class="col-form-label">Name:&nbsp;</label>
+									<label class="col-form-label">Name:&nbsp;<span class="text-danger">*</span></label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="eName" name="txtName" required>
@@ -225,19 +197,36 @@
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Qualification:&nbsp;</label>
+									<label class="col-form-label">Qualification:&nbsp;<span class="text-danger">*</span></label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="eQualification" name="txtQualification" required>
 								</div>
 							</div>
 						</div>
-						
+
+
+						<div class="col-sm-12">
+							<div class="input-group mb-5">
+								<div class="col-sm-2">
+									<label class="col-form-label">Type:&nbsp;<span class="text-danger">*</span></label>
+								</div>
+								<div class="col-sm-10">
+								    <select id="eType" class="form-control" name="txtType" required>
+										<option selected><---Select Type---></option>
+										<option value="Managing Director">Managing Director</option>
+										<option value="Sales & Marketing">Sales & Marketing</option>
+										<option value="Accounts Management and Executives">Accounts Management and Executives</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
 
                         <div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Designation:&nbsp;</label>
+									<label class="col-form-label">Designation:&nbsp;<span class="text-danger">*</span></label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="eDesignation" name="txtDesignation" required>
@@ -249,7 +238,7 @@
 						<div class="col-sm-12">
                             <div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Details:&nbsp;</label>
+									<label class="col-form-label">Details:&nbsp;<span class="text-danger">*</span></label>
 								</div>
                                 <div class="col-sm-10">
 									<textarea class="summernote" id="eDetails" name="txtDetails"></textarea>
@@ -257,51 +246,6 @@
                             </div>
                         </div>
 
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Twitter:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="eTwitter" name="txtTwitter" required>
-								</div>
-							</div>
-						</div>
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Facebook:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="eFacebook" name="txtFacebook" required>
-								</div>
-							</div>
-						</div>
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Instagram:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="eInstagram" name="txtInstagram" required>
-								</div>
-							</div>
-						</div>
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Linkedin:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="eLinkedin" name="txtLinkedin" required>
-								</div>
-							</div>
-						</div>
-					
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
@@ -309,10 +253,10 @@
 								</div>
 								<div class="col-sm-10">
 									<input type="file" class="form-control" name="filePhoto"  placeholder="image"><br>
-									<div class="form-group" id="eFilephoto"></div>	
+									<div class="form-group" id="eFilephoto"></div>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
 
 						<div class="submit-section float-right">
@@ -378,24 +322,25 @@
 				type: "GET",
 				url: "/edit-team/"+eid,
 				success:function(response){
-					//console.log(response.team.details);	
-					$('#cmbTeamId').val(eid);		
+					//console.log(response.team.details);
+					$('#cmbTeamId').val(eid);
 					$('#eName').val(response.team.name);
 					$('#eQualification').val(response.team.qualification);
+					$('#eType').val(response.team.type);
                     $('#eDesignation').val(response.team.designation);
 					$('#eDetails').summernote('code', response.team.details);
                     $('#eTwitter').val(response.team.twitter);
                     $('#eFacebook').val(response.team.facebook);
                     $('#eInstagram').val(response.team.instagram);
                     $('#eLinkedin').val(response.team.linkedin);
-				
+
 					$("#eFilephoto").html(
-                        `<img src="public/img/${response.team.image}" width="100" class="img-fluid img-thumbnail">`);
-					
+                        `<img src="img/${response.team.image}" width="100" class="img-fluid img-thumbnail">`);
+
 				}
 			});
 		});
-    
+
 	});
 </script>
 @endsection

@@ -21,7 +21,7 @@
     <!-- /Page Header -->
     <div class="row">
         <div class="col-auto float-right ml-auto pb-2" >
-            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_partner"><i class="fa fa-plus"></i>Add Partner</a> 
+            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_partner"><i class="fa fa-plus"></i>Add Partner</a>
         </div>
     </div>
         <!-- /Page Header -->
@@ -37,25 +37,24 @@
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                 </thead>
-                <tbody> 
-                    @forelse ($partner as $partner)
+                <tbody>
+                    @forelse ($partner as $key=> $partner)
                     <tr class="odd">
-                        <td>{{$partner-> id}}</td>
-                        <td><img src="{{asset('public/img/'.$partner->image)}}" height="60px" width="100px" alt=""></td>
+                        <td>{{ $key+1 }}</td>
+                        <td><img src="{{asset('img/'.$partner->image)}}" height="60px" width="100px" alt=""></td>
                         <td>{{$partner-> name}}</td>
                         <td>{{$partner-> title}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <!--<a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_partner"><i class="fas fa-eye"></i></a>&nbsp;-->
 								<button type="button" value="{{$partner->id}}" class="btn btn-primary" id="editpartner" ><i class="fas fa-pencil-alt" ></i> </button>&nbsp;
                                 <button type="button" value="{{$partner->id}}" class="btn btn-danger" id="partnerDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>
-                        </td>   
+                        </td>
                     </tr>
 					@empty
 						<div colspan="14">No records found</div>
 					@endforelse
-                </tbody>   
+                </tbody>
             </table>
         </div>
     </div>
@@ -164,7 +163,7 @@
 				<form action="{{url('partner-update')}}"  method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
-				
+
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
@@ -182,7 +181,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
@@ -193,8 +192,8 @@
 								</div>
 							</div>
 						</div>
-						
-							
+
+
 						<div class="col-sm-12">
                             <div class="input-group mb-5">
 								<div class="col-sm-2">
@@ -206,7 +205,7 @@
                             </div>
                         </div>
 
-					
+
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
@@ -214,11 +213,11 @@
 								</div>
 								<div class="col-sm-10">
 									<input type="file" class="form-control" name="filePhoto"  placeholder="image"><br>
-									<div class="input-group mb-5" id="eFilephoto"></div>	
+									<div class="input-group mb-5" id="eFilephoto"></div>
 								</div>
 							</div>
 						</div>
-						
+
 
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
@@ -230,7 +229,7 @@
 									<img src="{{url('backend/assets/photo/avatar.png')}}" alt="" style="height:70px; width:70px;" srcset="">
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
 
 						<div class="submit-section float-right">
@@ -292,19 +291,16 @@
 				type: "GET",
 				url: "/edit-partner/"+eid,
 				success:function(response){
-					// console.log(response.partner.brunch_id);	
-					$('#cmbPartnerId').val(eid);		
+					$('#cmbPartnerId').val(eid);
 					$('#eCategory').val(response.partner.category);
 					$('#eTitle').val(response.partner.title);
 					$('#eDetails').summernote('code', response.partner.details);
 					$("#eFilephoto").html(
-                        `<img src="public/img/${response.partner.image}" width="100" class="img-fluid img-thumbnail">`);
-					$("#eAttach_file").html(
-                        `<img src="public/img/${response.partner.attach_file}" width="100" class="img-fluid img-thumbnail">`);		
+                        `<img src="img/${response.partner.image}" width="100" class="img-fluid img-thumbnail">`);
 				}
 			});
 		});
-    
+
 	});
 </script>
 

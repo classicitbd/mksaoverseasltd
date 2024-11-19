@@ -12,13 +12,8 @@ class OurproductController extends Controller
     {
 
         $data['partner'] = Partner::select('id','image')->get();
-        // View()->share($partner);
-
         $data['product'] = Product::select('id','category', 'title', 'details', 'heading', 'price', 'image')->get();
-        // View()->share($partner);
-
-
         return view('frontend.ourproduct.index', $data);
-        
+
     }
 }

@@ -14,9 +14,10 @@ class TeamController extends Controller
     }
 
     public function store(Request $request){
-        $team=new Team; 
+        $team=new Team;
         $team->name=$request->txtName;
         $team->qualification=$request->txtQualification;
+        $team->type=$request->txtType;
         $team->designation=$request->txtDesignation;
         $team->details=$request->txtDetails;
         $team->twitter=$request->txtTwitter;
@@ -25,7 +26,7 @@ class TeamController extends Controller
         $team->linkedin=$request->txtLinkedin;
 
         $team->deleted_at=$request->txtDeleted_at;
-        
+
 
         if(isset($request->filePhoto)){
 			$imageName = time().(rand(100,1000)).'.'.$request->filePhoto->extension();
@@ -34,9 +35,9 @@ class TeamController extends Controller
 			$request->filePhoto->move(public_path('img'),$imageName);
 		}
 
-        $team->save();     
+        $team->save();
         return back()->with('success','Created Successfully.');
-          
+
     }
 
     public function edit($id){
@@ -53,6 +54,7 @@ class TeamController extends Controller
         $team->id=$request->cmbTeamId;
         $team->name=$request->txtName;
         $team->qualification=$request->txtQualification;
+        $team->type=$request->txtType;
         $team->designation=$request->txtDesignation;
         $team->details=$request->txtDetails;
         $team->twitter=$request->txtTwitter;
@@ -71,10 +73,10 @@ class TeamController extends Controller
 
             $team->update();
             return redirect()->back()
-            ->with('success',' Updated successfully');   
+            ->with('success',' Updated successfully');
     }
 
-    public function destroy(Request $request){  
+    public function destroy(Request $request){
         $teamid=$request->input('d_team');
 		$team= Team::find($teamid);
 		$team->delete();

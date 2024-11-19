@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <div class="team-info-left pt-3 pl-3">
-                                    <img src="{{ asset('public/img/' . $val->image) }}" alt="">
+                                    <img src="{{ asset('img/' . $val->image) }}" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-7">
@@ -36,7 +36,7 @@
                                     <h4>{{$val->name}}</h4>
                                     <span class="location">{{$val->designation}}</span>
                                     <ul class="bold member-info">
-                                        <!--<li><span class="text-dark">Qualification: </span>{{$val->qualification}}</li>-->
+                                        {{-- <li><span class="text-dark">Qualification: </span>{{$val->qualification}}</li> --}}
                                         <li><span class="text-dark">Email: </span>{{$val->email}}</li>
                                         <li><span class="text-dark">Phone: </span>{{$val->phone}}</li>
                                     </ul>
@@ -112,7 +112,7 @@
                             <div class="partners-slide">
                                 <a href="#" class="client-logo">
                                     <figure class="partners-slide-inner">
-                                        <img class="partners-slide-image" src="{{ asset('public/img/' . $val->image) }}" alt="">
+                                        <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
                                     </figure>
                                 </a>
                             </div>

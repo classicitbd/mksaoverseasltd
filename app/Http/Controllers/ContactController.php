@@ -9,11 +9,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-
-        $data['contactus'] = Contactus::select('id','title', 'heading', 'details', 'address', 'email', 'phone')->get();
-        // View()->share($partner);
-
+        $data['contactus'] = Contactus::all();
         return view('frontend.contact.index', $data);
-        
     }
 }

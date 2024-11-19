@@ -6,16 +6,16 @@
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="social-list">
-                            <li><a href="http://twitter.com/" target="_self"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="http://facebook.com/" target="_self"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="http://linkedin.com/" target="_self"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="http://instagram.com/" target="_self"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="{{ get_setting('twitter_url')->value ?? 'null' }}" target="_self"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="{{ get_setting('facebook_url')->value ?? 'null' }}" target="_self"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="{{ get_setting('linkedin_url')->value ?? 'null' }}" target="_self"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="{{ get_setting('instagram_url')->value ?? 'null' }}" target="_self"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
                     <div class="col-md-8">
                         <ul class="topbar-info align-self-end clearfix">
-                            <li><a href="tel:+8801713001870"><i class="fas fa-phone-alt"></i>+8801713001870</a></li>
-                            <li><a href="mailto:info@mksaoverseasltd.com"><i class="fas fa-envelope"></i>info@mksaoverseasltd.com</a>
+                            <li><a href="tel:{{ get_setting('phone')->value ?? 'null' }}"><i class="fas fa-phone-alt"></i>{{ get_setting('phone')->value ?? 'null' }}</a></li>
+                            <li><a href="mailto:{{ get_setting('email')->value ?? 'null' }}"><i class="fas fa-envelope"></i>{{ get_setting('email')->value ?? 'null' }}</a>
                             </li>
                         </ul>
                     </div>
@@ -30,12 +30,9 @@
                     <div class="octf-mainbar-row octf-row">
                         <div class="octf-col logo-col">
                             <div id="site-logo" class="site-logo">
-                                @foreach ($frontlogo as $val)
-                                    <a href="{{url('/')}}">
-                                        <img src="{{ asset('img/' . $val->logo_img) }}" alt="MKsaoverseas LTD"
-                                            class="logo">
-                                    </a>
-                                @endforeach
+                                <a href="{{url('/')}}">
+                                    <img src="{{ asset(get_setting('site_logo')->value ?? 'null') }}" alt="MKsaoverseas LTD" class="logo">
+                                </a>
                             </div>
                         </div>
                         <div class="octf-col menu-col">
@@ -43,14 +40,12 @@
                                 <ul class="menu">
                                     <li><a href="{{url('/home')}}">HOME</a></li>
                                     <li class="menu-item-has-children current-menu-item current-menu-ancestor">
-                                        <a href="#">ABOUT US<i class="fa fa-chevron-down" style="font-size: 9px;" aria-hidden="true"></i></a>
+                                        <a href="{{url('/about')}}">ABOUT US<i class="fa fa-chevron-down" style="font-size: 9px;" aria-hidden="true"></i></a>
                                         <ul class="sub-menu">
                                             @foreach($choosesection as $val)
                                                 <li><a href="{{asset('attach-file/'.$val->attach_file)}}" target="_blank">COMPANY PROFILE</a></li>
                                             @endforeach
                                             <li><a href="{{url('/boardofdirectors')}}">BOARD OF DIRECTORS</a></li>
-                                            <li><a href="{{url('/our-management-team')}}">MANAGEMENT TEAM</a></li>
-                                            <li><a href="{{url('/missionvission')}}">MISSION/VISSION</a></li>
                                             <li><a href="{{url('/gallary')}}">GALLARY</a></li>
                                         </ul>
                                     </li>
@@ -67,7 +62,7 @@
                                     <li>
                                     <div class="row">
                                     @foreach ($subMenu as $val)
-                                    <div class="col-md-4"><a href="{{url('business_unit/'.$val->submenu_url)}}">{{ $val->submenu_name }}</a></div>
+                                    <div class="col-md-4"><a href="{{url('service_unit/'.$val->submenu_url)}}">{{ $val->submenu_name }}</a></div>
                                     @endforeach
                                     </div>
                                     </li>
@@ -87,11 +82,9 @@
         <div class="container">
             <div class="mlogo_wrapper clearfix">
                 <div class="mobile_logo">
-                    @foreach ($frontlogo as $val)
                     <a href="{{url('/')}}">
-                        <img src="{{ asset('img/' . $val->logo_img) }}" alt="MKsaoverseas LTD">
+                        <img src="{{ asset(get_setting('site_logo')->value ?? 'null') }}" alt="MKsaoverseas LTD" class="logo">
                     </a>
-                    @endforeach
                 </div>
                 <div id="mmenu_toggle">
                     <button></button>
@@ -102,13 +95,13 @@
                     <ul id="menu-main-menu" class="mobile_mainmenu">
                         <li><a href="{{url('/home')}}">HOME</a></li>
                         <li class="menu-item-has-children current-menu-item current-menu-ancestor">
-                            <a href="#">ABOUT US</a>
+                            <a href="{{url('/about')}}">ABOUT US</a>
                             <ul class="sub-menu">
-                                <li><a href="#">COMPANY PROFILE</a></li>
-                                <li><a href="#">BOARD OF DIRECTORS</a></li>
-                                <li><a href="#">MANAGEMENT TEAM</a></li>
-                                <li><a href="#">MISSION/VISSION</a></li>
-                                <li><a href="#">GALLARY</a></li>
+                                @foreach($choosesection as $val)
+                                    <li><a href="{{asset('attach-file/'.$val->attach_file)}}" target="_blank">COMPANY PROFILE</a></li>
+                                @endforeach
+                                <li><a href="{{url('/boardofdirectors')}}">BOARD OF DIRECTORS</a></li>
+                                <li><a href="{{url('/gallary')}}">GALLARY</a></li>
                             </ul>
                         </li>
                         @foreach ($menu as $val)
@@ -120,14 +113,13 @@
                         @if(sizeof($subMenu) > 1)
                         <ul class="sub-menu">
                         @foreach ($subMenu as $val)
-                        <li><a href="{{url('business_unit/'.$val->submenu_url)}}">{{ $val->submenu_name }}</a></li>
+                        <li><a href="{{url('service_unit/'.$val->submenu_url)}}">{{ $val->submenu_name }}</a></li>
                         @endforeach
                         </ul>
                         @endif
                         </li>
                         @endforeach
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -138,7 +130,6 @@
 .main-navigation > ul > li {
 position: initial;
 }
-
 .main-navigation ul li .mega {
 width: -webkit-fill-available !important;
 }

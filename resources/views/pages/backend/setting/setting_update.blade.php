@@ -70,6 +70,12 @@
                                         </div>
 
                                         <div class="col-sm-12 mb-3">
+                                            <label for="google_map" class="col-form-label" style="font-weight: bold;">Google Map</label>
+                                            <input type="hidden" name="types[]" value="google_map">
+                                            <input class="form-control" type="text" name="google_map" placeholder="Google Map" value="{{ get_setting('google_map')->value ?? 'Null' }}">
+                                        </div>
+
+                                        <div class="col-sm-12 mb-3">
                                             <label for="business_address" class="col-form-label" style="font-weight: bold;">Address</label>
                                             <input type="hidden" name="types[]" value="business_address">
                                             <textarea class="form-control" id="business_address" cols="2" name="business_address" placeholder="Write address here">{{ get_setting('business_address')->value ?? 'Null' }}</textarea>
@@ -138,7 +144,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 mb-3">
                                             <div class="mb-2">
-                                                <img id="showFavicon" class="rounded avatar-lg" src="{{ asset(get_setting('site_favicon')->value ?? 'Null') }}" alt="No Image" width="100px" height="50px;">
+                                                <img id="showFavicon" class="rounded avatar-lg" src="{{ asset(get_setting('site_favicon')->value ?? 'Null') }}" alt="No Image" width="80px" height="80px;">
                                             </div>
                                             <div class="mb-2">
                                                 <label for="site_favicon" class="col-form-label" style="font-weight: bold;">Site Favicon</label>
@@ -152,7 +158,7 @@
 
                                         <div class="col-sm-12 mb-3">
                                             <div class="mb-2">
-                                                <img id="showImage" class="rounded avatar-lg" src="{{ asset(get_setting('site_logo')->value ?? 'Null') }}" alt="No Image" width="180px" height="100px;">
+                                                <img id="showImage" class="rounded avatar-lg" src="{{ asset(get_setting('site_logo')->value ?? 'Null') }}" alt="No Image" width="80px" height="80px;">
                                             </div>
                                             <div class="mb-2">
                                                 <label for="image" class="col-form-label" style="font-weight: bold;">Site Logo</label>
@@ -166,7 +172,7 @@
 
                                         <div class="col-sm-12 mb-3">
                                             <div class="mb-2">
-                                                <img id="showFooter" class="rounded avatar-lg" src="{{ asset(get_setting('site_footer_logo')->value ?? 'Null') }}" alt="No Image" width="180px" height="100px;">
+                                                <img id="showFooter" class="rounded avatar-lg" src="{{ asset(get_setting('site_footer_logo')->value ?? 'Null') }}" alt="No Image" width="80px" height="80px;">
                                             </div>
                                             <div class="mb-2">
                                                 <label for="site_footer_logo" class="col-form-label" style="font-weight: bold;">Site Footer Logo</label>

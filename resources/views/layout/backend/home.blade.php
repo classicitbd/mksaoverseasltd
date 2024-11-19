@@ -44,6 +44,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.2/r-2.2.9/datatables.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
 	</head>
     <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -101,6 +102,28 @@
 		<script src="{{url('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 		<!-- AdminLTE App -->
 		<script src="{{url('backend/dist/js/adminlte.js')}}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        @if (Session::has('success'))
+            <script>
+                toastr.options = {
+                    'progressBar': true,
+                    'closeButton': true,
+                    'timeout': 120000, // Adjust the timeout as needed
+                };
+                toastr.success("{{ Session::get('success') }}");
+            </script>
+        @elseif (Session::has('error'))
+            <script>
+                toastr.options = {
+                    'progressBar': true,
+                    'closeButton': true,
+                    'timeout': 120000, // Adjust the timeout as needed
+                };
+                toastr.error("{{ Session::get('error') }}", 'Error!');
+            </script>
+        @endif
+
 		<!-- DataTables  & Plugins -->
 		<script src="{{url('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 		<script src="{{url('backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -144,6 +167,38 @@
 			"responsive": true,
 		});
 	});
+</script>
+
+<!-- sweetalert js-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $(document).on('click','#delete',function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete This Data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+        })
+
+        });
+    });
 </script>
 </body>
 </html>
