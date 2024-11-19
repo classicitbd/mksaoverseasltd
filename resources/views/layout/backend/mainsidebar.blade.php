@@ -29,22 +29,6 @@
                     </a>
                 </li>
 
-                <!-- Settings -->
-                <li class="nav-item">
-                    <a href="{{ url('/settings') }}" class="nav-link {{ request()->is('settings') ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-user"></i>
-                        <p>Settings</p>
-                    </a>
-                </li>
-
-                <!-- Contact Us -->
-                <li class="nav-item">
-                    <a href="{{ url('/contactus') }}" class="nav-link {{ request()->is('contactus') ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-user"></i>
-                        <p>Contact Us</p>
-                    </a>
-                </li>
-
                 <!-- Inbox with Submenu -->
                 <li class="nav-item {{ request()->is('message*') || request()->is('newsletter*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is('message*') || request()->is('newsletter*') ? 'active' : '' }}">
@@ -102,8 +86,8 @@
                 </li>
 
 
-                <li class="nav-item {{ request()->is('quality-technology/*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('quality-technology/*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('events/*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('events/*') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-book-open"></i>
                         <p>
                             Pages
@@ -112,9 +96,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('quality-technology/1/edit') }}" class="nav-link {{ request()->is('quality-technology/1/edit') ? 'active' : '' }}">
+                            <a href="{{ url('events/1/edit') }}" class="nav-link {{ request()->is('events/1/edit') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Quality & Technology</p>
+                                <p>All Event</p>
                             </a>
                         </li>
                     </ul>
@@ -146,8 +130,24 @@
                     </ul>
                 </li>
 
-                <li class="nav-item {{ request()->is('aboutus/1/edit*') || request()->is('director*') || request()->is('mission*') || request()->is('frontlogo*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('aboutus/1/edit*') || request()->is('director*') || request()->is('mission*') || request()->is('frontlogo*') ? 'active' : '' }}">
+                <!-- Settings -->
+                <li class="nav-item">
+                    <a href="{{ url('/settings') }}" class="nav-link {{ request()->is('settings') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-user"></i>
+                        <p>Settings</p>
+                    </a>
+                </li>
+
+                <!-- Contact Us -->
+                <li class="nav-item">
+                    <a href="{{ url('contact-us/1/edit') }}" class="nav-link {{ request()->is('contact-us/1/edit') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-user"></i>
+                        <p>Contact Us</p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ request()->is('aboutus/1/edit*') || request()->is('company/1/edit*') || request()->is('director*') || request()->is('mission*') || request()->is('team*') || request()->is('all-membership*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('aboutus/1/edit*') || request()->is('company/1/edit*') || request()->is('director*') || request()->is('mission*') || request()->is('team*') || request()->is('all-membership*') ? 'active' : '' }}">
                     <i class="nav-icon fa fa-user"></i><p>About Us<i class="right fas fa-angle-left"></i></p></a>
 
                     <ul class="nav nav-treeview">
@@ -155,6 +155,13 @@
                             <a href="{{url('aboutus/1/edit')}}" class="nav-link {{ request()->is('aboutus/1/edit') ? 'active' : '' }}">
                             <i class="nav-icon fa fa-user"></i>
                             <p>About</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{url('company/1/edit')}}" class="nav-link {{ request()->is('company/1/edit') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-user"></i>
+                            <p>Company Info</p>
                             </a>
                         </li>
 
@@ -173,10 +180,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{url('/frontlogo')}}" class="nav-link {{ request()->is('frontlogo') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-tree"></i>
-                            <p>Logo</p>
-                            </a>
+                            <a href="{{url('/team')}}" class="nav-link {{ request()->is('team') ? 'active' : '' }}"><i class="far fa-circle nav-icon"></i><p>Our Team</p></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{url('/all-membership')}}" class="nav-link {{ request()->is('all-membership') ? 'active' : '' }}"><i class="far fa-circle nav-icon"></i><p>Membership</p></a>
                         </li>
                     </ul>
                 </li>
@@ -207,6 +215,56 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item {{ request()->is('galleries*') || request()->is('video/galleries*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('galleries*') || request()->is('video/galleries*') ? 'active' : '' }}">
+                      <i class="nav-icon fas fa-tree"></i>
+                      <p>
+                        Gallary
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{url('/galleries')}}" class="nav-link {{ request()->is('galleries') ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>All Gallary List</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{url('/video/galleries')}}" class="nav-link {{ request()->is('video/galleries') ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>All Video List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item {{ request()->is('slider-create*') || request()->is('slider-list*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('slider-create*') || request()->is('slider-list*') ? 'active' : '' }}">
+                      <i class="nav-icon fas fa-tree"></i>
+                      <p>
+                        Slider
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{url('slider-create')}}" class="nav-link {{ request()->is('slider-create') ? 'active' : '' }}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Slider Add</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{url('slider-list')}}" class="nav-link {{ request()->is('slider-list') ? 'active' : '' }}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Slider List</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
 
                 <li class="nav-item {{ request()->is('partnercategories*') || request()->is('partner*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is('partnercategories*') || request()->is('partner*') ? 'active' : '' }}"><i class="nav-icon fa fa-user"></i><p>Partners<i class="right fas fa-angle-left"></i></p></a>

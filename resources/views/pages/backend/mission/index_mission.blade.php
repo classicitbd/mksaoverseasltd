@@ -23,7 +23,7 @@
     <!-- /Page Header -->
 	<div class="row">
         <div class="col-auto float-right ml-auto pb-2" >
-            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_mission"><i class="fa fa-plus"></i>Add Mission</a> 
+            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_mission"><i class="fa fa-plus"></i>Add Mission</a>
         </div>
 	</div>
 	<!-- /Page Header -->
@@ -39,22 +39,21 @@
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                 </thead>
-                <tbody> 
-                    @forelse ($mission as $mission)	
+                <tbody>
+                    @forelse ($mission as $key=> $mission)
                     <tr class="odd">
-                        <td>{{$mission-> id}}</td>
+                        <td>{{ $key+1 }}</td>
 						<td>
-						<img src="{{asset('public/img/'.$mission->image)}}" height="70px" width="70px" alt="">
+						<img src="{{asset('img/'.$mission->image)}}" height="70px" width="70px" alt="">
 						</td>
                         <td>{{$mission-> name}}</td>
                         <td>{{$mission-> created_at}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_mission"><i class="fas fa-eye"></i></a>&nbsp;
 								<button type="button" value="{{$mission->id}}" class="btn btn-primary" id="editmission" ><i class="fas fa-pencil-alt" ></i> </button>&nbsp;
                                 <button type="button" value="{{$mission->id}}" class="btn btn-danger" id="missionDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>
-                        </td>   
+                        </td>
                     </tr>
 					@empty
 						<div colspan="14">No records found</div>
@@ -142,7 +141,7 @@
 				<form action="{{url('mission-update')}}"  method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
-				
+
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
@@ -155,7 +154,7 @@
 								</div>
 							</div>
 						</div>
-							
+
 						<div class="col-sm-12">
                             <div class="input-group mb-5">
 								<div class="col-sm-2">
@@ -166,14 +165,14 @@
                             	</div>
                             </div>
                         </div>
-					
+
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<label class="col-form-label">Photo:&nbsp;</label>
 								<input type="file" class="form-control" name="filePhoto"  placeholder="image"><br>
-								<div class="input-group mb-5" id="eFilephoto"></div>	
+								<div class="input-group mb-5" id="eFilephoto"></div>
 							</div>
-						</div>	
+						</div>
 					</div>
 
 						<div class="submit-section float-right">
@@ -218,12 +217,12 @@
 <!-- /Delete Category Modal -->
 <script>
 	$(document).ready(function(){
-        
+
 		$(document).on('click','#missionDbtn',function(){
 			$('#delete_mission').modal('show');
 			$('#delete_missionId').val(mission_id);
 		});
-    
+
 		$(document).on('click','#editmission',function(){
 
 
@@ -233,11 +232,11 @@
 				type: "GET",
 				url: "/edit-mission/"+eid,
 				success:function(response){
-					$('#cmbMissionId').val(eid);		
+					$('#cmbMissionId').val(eid);
 					$('#eName').val(response.mission.name);
 					$('#eDetails').summernote('code', response.mission.details);
 					$("#eFilephoto").html(
-                        `<img src="public/img/${response.mission.image}" width="100" class="img-fluid img-thumbnail">`);
+                        `<img src="img/${response.mission.image}" width="100" class="img-fluid img-thumbnail">`);
 				}
 			});
 		});

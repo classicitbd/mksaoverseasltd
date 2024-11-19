@@ -10,7 +10,7 @@ use App\Models\Additionalimage;
 
 class OtherunitController extends Controller
 {
-    public function business_unit(Request $request){ 
+    public function service_unit(Request $request){
 
         $SubmenuId = Submenu::where('submenu_url',$request->url)->select('id')->first();
 

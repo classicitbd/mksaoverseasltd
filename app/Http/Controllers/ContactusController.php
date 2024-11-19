@@ -2,64 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use App\Models\Contactus;
 
 class ContactusController extends Controller
 {
     public function index()
     {
-        $contactus=Contactus::all();
-        //   dd($contactus);
-        return view("pages.backend.contactus.index_contactus",["contactus"=>$contactus]);
-    }
-
-    public function store(Request $request){
-        $contactus=new Contactus;
-        $contactus->title=$request->txtTitle; 
-        $contactus->heading=$request->txtHeading;
-        $contactus->details=$request->txtDetails;
-        $contactus->address=$request->txtAddress;
-        $contactus->email=$request->txtEmail;
-        $contactus->phone=$request->txtPhone;
-       
-        $contactus->save();     
-        return back()->with('success','Created Successfully.');
-          
+        $contactus = Contactus::all();
+        return view("pages.backend.contactus.index",compact('contactus'));
     }
 
     public function edit($id){
-		$contactus=Contactus::find($id);
-		return response()->json([
-			'status'=>200,
-			'contactus'=>$contactus
-		]);
-	}
-
-
-    public function update(Request $request){
-        //	$contactus->update($request->all());
-            $contactusid=$request->input('cmbContactusId');
-            $contactus = Contactus::find($contactusid);
-            $contactus->id=$request->cmbContactusId;
-            $contactus->title=$request->txtTitle; 
-            $contactus->heading=$request->txtHeading;
-            $contactus->details=$request->txtDetails;
-            $contactus->address=$request->txtAddress;
-            $contactus->email=$request->txtEmail;
-            $contactus->phone=$request->txtPhone;
-            
-            $contactus->update();
-            return redirect()->back()
-            ->with('success',' Updated successfully');   
+        $contactus = Contactus::find($id);
+        return view("pages.backend.contactus.index",compact('contactus'));
     }
 
-    public function destroy(Request $request){  
-        $contactusid=$request->input('d_contactus');
-		$contactus= Contactus::find($contactusid);
-		$contactus->delete();
 
+    public function update(Request $request,$id){
+        $contactus = Contactus::find($id);
+
+        if(Request::has('txtTitle')){
+            $contactus->title=strval(Request::input('txtTitle'));
+        }
+
+        if(Request::has('txtAddress1')){
+            $contactus->address_1=strval(Request::input('txtAddress1'));
+        }
+
+        if(Request::has('txtAddress2')){
+            $contactus->address_2=strval(Request::input('txtAddress2'));
+        }
+
+        if(Request::has('txtEmail')){
+            $contactus->email=strval(Request::input('txtEmail'));
+        }
+
+        if(Request::has('txtPhone')){
+            $contactus->phone=strval(Request::input('txtPhone'));
+        }
+
+        if(Request::has('txtDetails')){
+            $contactus->details=strval(Request::input('txtDetails'));
+        }
+
+
+        if(Request::hasFile('image')){
+            $file = Request::file('image');
+            $imageName = time().(rand(100,1000)).'.'.$file->extension();
+            $contactus->image=$imageName;
+            $file->move(public_path('img'), $imageName);
+        }
+
+        $contactus->update();
         return redirect()->back()
-        ->with('success',' Deleted successfully');
+        ->with('success',' Updated successfully');
     }
 }

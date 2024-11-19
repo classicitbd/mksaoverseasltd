@@ -29,7 +29,7 @@
     <!-- /Page Header -->
 	<div class="row">
         <div class="col-auto float-right ml-auto pb-2" >
-            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_director"><i class="fa fa-plus"></i>Add Director</a> 
+            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_director"><i class="fa fa-plus"></i>Add Director</a>
         </div>
 	</div>
 	<!-- /Page Header -->
@@ -45,12 +45,12 @@
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                 </thead>
-                <tbody> 
-                    @forelse ($director as $director)	
+                <tbody>
+                    @forelse ($director as $key=> $director)
                     <tr class="odd">
-                        <td>{{$director-> id}}</td>
+                        <td>{{ $key+1 }}</td>
 						<td>
-						<img src="{{asset('public/img/'.$director->image)}}" height="70px" width="70px" alt="">
+						<img src="{{asset('img/'.$director->image)}}" height="70px" width="70px" alt="">
 						</td>
                         <td>{{$director-> name}}</td>
                         <td>{{$director-> designation}}</td>
@@ -59,7 +59,7 @@
 								<button type="button" value="{{$director->id}}" class="btn btn-primary" id="editdirector" ><i class="fas fa-pencil-alt" ></i> </button>&nbsp;
                                 <button type="button" value="{{$director->id}}" class="btn btn-danger" id="directorDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>
-                        </td>   
+                        </td>
                     </tr>
 					@empty
 						<div colspan="14">No records found</div>
@@ -236,7 +236,7 @@
 				<form action="{{url('director-update')}}"  method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
-				
+
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
@@ -249,7 +249,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
@@ -260,7 +260,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
@@ -287,14 +287,14 @@
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Email:&nbsp;</label>	
+									<label class="col-form-label">Email:&nbsp;</label>
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="eEmail" name="txtEmail">
 								</div>
 							</div>
 						</div>
-							
+
 
 						<div class="col-sm-12">
                             <div class="input-group mb-5">
@@ -351,14 +351,14 @@
 								</div>
 							</div>
 						</div>
-					
+
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<label class="col-form-label">Photo:&nbsp;</label>
 								<input type="file" class="form-control" name="filePhoto"  placeholder="image"><br>
-								<div class="input-group mb-5" id="eFilephoto"></div>	
+								<div class="input-group mb-5" id="eFilephoto"></div>
 							</div>
-						</div>	
+						</div>
 					</div>
 
 						<div class="submit-section float-right">
@@ -421,8 +421,8 @@
 				type: "GET",
 				url: "/edit-director/"+eid,
 				success:function(response){
-					// console.log(response.director.brunch_id);	
-					$('#cmbDirectorId').val(eid);		
+					// console.log(response.director.brunch_id);
+					$('#cmbDirectorId').val(eid);
 					$('#eName').val(response.director.name);
 					$('#eQualification').val(response.director.qualification);
 					$('#eDesignation').val(response.director.designation);
@@ -434,11 +434,11 @@
 					$('#eLinkedin').val(response.director.linkedin);
 					$('#ePinterest').val(response.director.pinterest);
 					$("#eFilephoto").html(
-                        `<img src="public/img/${response.director.image}" width="100" class="img-fluid img-thumbnail">`);
+                        `<img src="img/${response.director.image}" width="100" class="img-fluid img-thumbnail">`);
 				}
 			});
 		});
-    
+
 	});
 
 </script>

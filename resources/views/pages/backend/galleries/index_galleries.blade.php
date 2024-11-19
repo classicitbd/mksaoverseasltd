@@ -21,7 +21,7 @@
     <!-- /Page Header -->
 	<div class="row">
         <div class="col-auto float-right ml-auto pb-2" >
-            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_galleries"><i class="fa fa-plus"></i>Add Gallery</a> 
+            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_galleries"><i class="fa fa-plus"></i>Add Gallery</a>
         </div>
 	</div>
 	<!-- /Page Header -->
@@ -31,31 +31,30 @@
                 <thead>
                     <tr>
                       <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Category</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Gallery Img</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Title</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Created Date</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                 </thead>
-                <tbody> 
-                    @forelse ($galleries as $galleries)
+                <tbody>
+                    @forelse ($galleries as $key=> $galleries)
                     <tr class="odd">
-                        <td>{{$galleries-> id}}</td>
-                        <td>{{$galleries-> name}}</td>
+                        <td>{{ $key+1 }}</td>
+                        <td><img src="{{ asset('img/' . $galleries->image) }}" height="80px" width="120px" alt=""></td>
                         <td>{{$galleries-> title}}</td>
                         <td>{{$galleries-> created_at}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_galleries"><i class="fas fa-eye"></i></a>&nbsp;
 								<button type="button" value="{{$galleries->id}}" class="btn btn-primary" id="editgalleries" ><i class="fas fa-pencil-alt" ></i> </button>&nbsp;
                                 <button type="button" value="{{$galleries->id}}" class="btn btn-danger" id="galleriesDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>
-                        </td>   
+                        </td>
                     </tr>
 					@empty
 						<div colspan="14">No records found</div>
 					@endforelse
-                </tbody>  
+                </tbody>
             </table>
         </div>
     </div>
@@ -76,23 +75,6 @@
 				<form action="{{route('galleries.store')}}" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="row">
-						<div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Category:&nbsp;</label>
-								</div>
-								
-								<div class="col-sm-10">
-									<select id="txtCategory" class="form-control" name="txtCategory" required>
-										<option selected><---Father Category---></option>
-										@foreach ($gallerycategories as $gallerycategori)
-										<option value="{{ $gallerycategori->id }}">{{ $gallerycategori->name }}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-						</div>
-
                         <div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
@@ -104,41 +86,17 @@
 							</div>
 						</div>
 
-                         <!-- /.card-header -->
-						 <div class="col-sm-12">
-                            <div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Details:&nbsp;</label>
-								</div>
-                                <div class="col-sm-10">
-									<textarea name="txtDetails" id="txtDetails" class="summernote"></textarea>
-                            	</div>
-                            </div>
-                        </div>
-
-
                         <div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
 									<label class="col-form-label">Photo:&nbsp;</label>
 								</div>
 								<div class="col-sm-10">
-									<input type="file" class="form-control" id="filePhoto" name="filePhoto"required>
+									<span class="text-danger">Max-height: 300px & Max-Width: 382px</span>
+									<input type="file" class="form-control" id="filePhoto" name="filePhoto" required>
 								</div>
 							</div>
 						</div>
-
-                        <div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Attach File:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="file" class="form-control" id="fileAttach" name="fileAttach"required>
-								</div>
-							</div>
-						</div>
-
 					</div>
 
 					<div class="submit-section float-right">
@@ -165,26 +123,10 @@
 				<form action="{{url('galleries-update')}}"  method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
-				
+
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="input-group mb-5">
-								<input type="hidden" value="" id="cmbGalleriesId" name="cmbGalleriesId" >
-								<div class="col-sm-2">
-									<label class="col-form-label">Category:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<select id="eCategory" class="form-control" name="txtCategory" required>
-										<option ><---Father Category---></option>
-										@foreach ($gallerycategories as $gallerycategori)
-										<option value="{{ $gallerycategori->id }}" >{{ $gallerycategori->name }}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-sm-12">
+						    <input type="hidden" value="" id="cmbGalleriesId" name="cmbGalleriesId" >
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
 									<label class="col-form-label">Title:&nbsp;</label>
@@ -195,48 +137,24 @@
 							</div>
 						</div>
 
-
-						<div class="col-sm-12">
-                            <div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Details:&nbsp;</label>
-								</div>
-                                <div class="col-sm-10">
-									<textarea class="summernote" id="eDetails" name="txtDetails"></textarea>
-                            	</div>
-                            </div>
-                        </div>
-					
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
 									<label class="col-form-label">Photo:&nbsp;</label>
 								</div>
 								<div class="col-sm-10">
+									<span class="text-danger">Max-height: 300px & Max-Width: 382px</span>
 									<input type="file" class="form-control" name="filePhoto"  placeholder="image"><br>
-									<div class="form-group" id="eFilephoto"></div>	
+									<div class="form-group" id="eFilephoto"></div>
 								</div>
 							</div>
 						</div>
-						
-
-						<div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Attach File:&nbsp;</label>
-								</div>
-								<div class="col-sm-10">
-									<input type="file" class="form-control" name="fileAttach" placeholder="attach_file"><br>
-									<img src="{{url('backend/assets/photo/avatar.png')}}" alt="" style="height:70px; width:70px;" srcset="">
-								</div>
-							</div>
-						</div>	
 					</div>
 
-						<div class="submit-section float-right">
-							<button type="button" class="btn btn-secondary" style="width:80px;" data-dismiss="modal">Cancle</button>
-							<input class="btn btn-primary submit-btn" type="submit"  name="btnUpdate" value="Update">
-						</div>
+					<div class="submit-section float-right">
+						<button type="button" class="btn btn-secondary" style="width:80px;" data-dismiss="modal">Cancle</button>
+						<input class="btn btn-primary submit-btn" type="submit"  name="btnUpdate" value="Update">
+					</div>
 				</form>
 			</div>
 		</div>
@@ -284,7 +202,7 @@
 			$('#delete_galleriesId').val(galleries_id);
 		});
 
-		
+
 	$(document).on('click','#editgalleries',function(){
 			//  alert("ok");
 
@@ -295,20 +213,16 @@
 				type: "GET",
 				url: "/edit-galleries/"+eid,
 				success:function(response){
-					// console.log(response.galleries.brunch_id);	
-					$('#cmbGalleriesId').val(eid);		
-					$('#eCategory').val(response.galleries.category);
+					// console.log(response.galleries.brunch_id);
+					$('#cmbGalleriesId').val(eid);
 					$('#eTitle').val(response.galleries.title);
-					$('#eDetails').summernote('code', response.galleries.details);
 					$("#eFilephoto").html(
-                        `<img src="public/img/${response.galleries.image}" width="100" class="img-fluid img-thumbnail">`);
-					$("#eAttach_file").html(
-                        `<img src="img/${response.galleries.attach_file}" width="100" class="img-fluid img-thumbnail">`);
-					
+                        `<img src="img/${response.galleries.image}" width="100" class="img-fluid img-thumbnail">`);
+
 				}
 			});
 		});
-    
+
 	});
 
 </script>

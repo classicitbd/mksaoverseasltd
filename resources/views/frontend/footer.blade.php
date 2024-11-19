@@ -49,13 +49,11 @@
         </div>
         <div class="row">
             <div class="col-md-6 mb-4 mb-md-0">
-                @foreach($frontlogo as $val)
-                 <img src="{{asset('img/'.$val->logo_img)}}" height="85px" width="85px" alt="MKsaoverseas LTD" class="lazyloaded" data-ll-status="loaded">
-                @endforeach
+                <img src="{{ asset(get_setting('site_footer_logo')->value ?? 'null') }}" height="85px" width="85px" alt="MKsaoverseas LTD" class="lazyloaded" data-ll-status="loaded">
             </div>
 
             <div class="col-md-6 text-left text-md-right align-self-center">
-                <p class="copyright-text">All Rights Reserved © 2024 by MKsaoverseas LTD.</p>
+                <p class="copyright-text">All Rights Reserved © 2024 by {{ get_setting('copy_right')->value ?? 'null' }}.</p>
             </div>
         </div>
 

@@ -12,8 +12,8 @@ use App\Models\Diplomatraining;
 
 class BusinessunitController extends Controller
 {
-    public function business_unit(Request $request){
-        
+    public function service_unit(Request $request){
+
 
         $SubmenuId = Submenu::where('submenu_url',$request->url)->select('id')->first();
 
@@ -22,7 +22,7 @@ class BusinessunitController extends Controller
         $data['partner'] = Partner::select('id','image')->get();
 
         $data['bsctraining'] = Bsctraining::select('id','bt_name', 'bt_details', 'price', 'duration', 'icon')->get();
-        
+
         $data['diplomatraining'] = Diplomatraining::select('id','dt_name', 'dt_details', 'price', 'duration', 'icon')->get();
 
         $data['multiImg'] = Additionalimage::where('bu_name',$SubmenuId->id)->select('id','image','title')->get();
@@ -31,8 +31,8 @@ class BusinessunitController extends Controller
           return view('frontend.trainingschedule', $data);
         }
 
-        
-        return view('frontend.business_unit', $data);
+
+        return view('frontend.service_unit', $data);
 
 
     }

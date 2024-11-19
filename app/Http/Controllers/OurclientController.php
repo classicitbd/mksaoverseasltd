@@ -15,13 +15,13 @@ class OurclientController extends Controller
     }
 
     public function store(Request $request){
-        $ourclient=new Ourclient; 
+        $ourclient=new Ourclient;
         $ourclient->c_name=$request->txtClientName;
         $ourclient->c_type=$request->txtCompanyType;
         $ourclient->c_details=$request->txtCompanyDetails;
-      
+
         $ourclient->deleted_at=$request->txtDeleted_at;
-        
+
 
         if(isset($request->filePhoto)){
             $imageName = time().(rand(100,1000)).'.'.$request->filePhoto->extension();
@@ -30,9 +30,9 @@ class OurclientController extends Controller
 			$request->filePhoto->move(public_path('img'),$imageName);
 		}
 
-        $ourclient->save();     
+        $ourclient->save();
         return back()->with('success','Created Successfully.');
-          
+
     }
 
     public function edit($id){
@@ -45,28 +45,27 @@ class OurclientController extends Controller
 
 
     public function update(Request $request){
-        //		$ourclient->update($request->all());
-            $ourclientid=$request->input('cmbOurclientId');
-            $ourclient = Ourclient::find($ourclientid);
-            $ourclient->id=$request->cmbOurclientId;
-            $ourclient->c_name=$request->txtClientName;
-            $ourclient->c_type=$request->txtCompanyType;
-            $ourclient->c_details=$request->txtCompanyDetails;
+        $ourclientid=$request->input('cmbOurclientId');
+        $ourclient = Ourclient::find($ourclientid);
+        $ourclient->id=$request->cmbOurclientId;
+        $ourclient->c_name=$request->txtClientName;
+        $ourclient->c_type=$request->txtCompanyType;
+        $ourclient->c_details=$request->txtCompanyDetails;
 
-            $ourclient->deleted_at=$request->txtDeleted_at;
+        $ourclient->deleted_at=$request->txtDeleted_at;
 
-            if(isset($request->filePhoto)){
-                $imageName = time().(rand(100,1000)).'.'.$request->filePhoto->extension();
-                $ourclient->logo_img=$imageName;
-                $request->filePhoto->move(public_path('img'),$imageName);
-            }
-            $ourclient->update();
-            return redirect()->back()
-            ->with('success',' Updated successfully');   
+        if(isset($request->filePhoto)){
+            $imageName = time().(rand(100,1000)).'.'.$request->filePhoto->extension();
+            $ourclient->logo_img=$imageName;
+            $request->filePhoto->move(public_path('img'),$imageName);
+        }
+        $ourclient->update();
+        return redirect()->back()
+        ->with('success',' Updated successfully');
     }
 
 
-    public function destroy(Request $request){  
+    public function destroy(Request $request){
         $ourclientid=$request->input('d_ourclient');
 		$ourclient= Ourclient::find($ourclientid);
 		$ourclient->delete();

@@ -30,31 +30,31 @@
                                 <div class="form-group col-12">
                                     <label for="">Existing Image</label>
                                     <div>
-                                        <img src="{{asset('public/img/'.$aboutus->image)}}" alt="" sizes="" srcset="" height="200px" width="300px"> 
+                                        <img src="{{asset('img/'.$aboutus->image)}}" alt="" sizes="" srcset="" height="200px" width="300px">
                                     </div>
-    
+
                                     <div class="pt-3">
                                         <label for="">Image</label>
                                         <input type="file" name="image">
                                     </div>
                                 </div>
-                                
+
             					<div class="form-group col-6">
                                     <label>Title<span class="text-danger">*</span></label>
                                     <input type="text" name="txtTitle" id="txtTitle" class="form-control" value="{{$aboutus->title}}">
                                 </div>
-        						
+
         						<div class="form-group col-6">
                                     <label>Heading<span class="text-danger">*</span></label>
                                     <input type="text" name="txtHeading" id="txtHeading" class="form-control" value="{{$aboutus->heading}}">
                                 </div>
-                                
+
                                  <div class="form-group col-12">
                                     <label>Details<span class="text-danger">*</span></label>
                                     <textarea class="summernote" id="txtDetails" name="txtDetails">{{$aboutus->details}}</textarea>
                                 </div>
         					</div>
-    
+
     					    <div class="row">
                                 <div class="col-12">
                                     <button class="btn btn-primary">Update</button>

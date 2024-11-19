@@ -22,7 +22,7 @@
     <!-- /Page Header -->
 	<div class="row">
         <div class="col-auto float-right ml-auto pb-2" >
-            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_business"><i class="fa fa-plus"></i>Add Offer</a> 
+            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#add_business"><i class="fa fa-plus"></i>Add Offer</a>
         </div>
 	</div>
 	<!-- /Page Header -->
@@ -38,20 +38,19 @@
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                 </thead>
-                <tbody> 
-                    @forelse ($business as $business)
+                <tbody>
+                    @forelse ($business as $key=> $business)
                     <tr class="odd">
-                        <td>{{$business-> id}}</td>
+                        <td>{{ $key+1 }}</td>
                         <td>{{$business-> submenu_name}}</td>
                         <td>{{$business-> title}}</td>
                         <td>{{$business-> created_at}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_business"><i class="fas fa-eye"></i></a>&nbsp;
 								<button type="button" value="{{$business->id}}" class="btn btn-primary" id="editbusiness" ><i class="fas fa-pencil-alt" ></i> </button>&nbsp;
                                 <button type="button" value="{{$business->id}}" class="btn btn-danger" id="businessDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>
-                        </td>   
+                        </td>
                     </tr>
 					@empty
 						<div colspan="14">No records found</div>
@@ -138,7 +137,7 @@
                             </div>
                         </div>
 
-						
+
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-3">
@@ -209,7 +208,7 @@
 				<form action="{{url('business-update')}}"  method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
-				
+
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
@@ -227,7 +226,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-3">
@@ -294,7 +293,7 @@
 								</div>
 							</div>
 						</div>
-					
+
 
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
@@ -303,29 +302,16 @@
 								</div>
 								<div class="col-sm-9">
 									<input type="file" class="form-control" name="filePhoto"  placeholder="image"><br>
-									<div class="form-group" id="eFilephoto"></div>	
+									<div class="form-group" id="eFilephoto"></div>
 								</div>
 							</div>
 						</div>
-						
-
-						<div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-3">
-									<label class="col-form-label">Attach File:&nbsp;</label>
-								</div>
-								<div class="col-sm-9">
-									<input type="file" class="form-control" name="fileAttach" placeholder="attach_file"><br>
-									<img src="{{url('backend/assets/photo/avatar.png')}}" alt="" style="height:70px; width:70px;" srcset="">
-								</div>
-							</div>
-						</div>	
 					</div>
 
-						<div class="submit-section float-right">
-							<button type="button" class="btn btn-secondary" style="width:80px;" data-dismiss="modal">Cancle</button>
-							<input class="btn btn-primary submit-btn" type="submit"  name="btnUpdate" value="Update">
-						</div>
+                    <div class="submit-section float-right">
+                        <button type="button" class="btn btn-secondary" style="width:80px;" data-dismiss="modal">Cancle</button>
+                        <input class="btn btn-primary submit-btn" type="submit"  name="btnUpdate" value="Update">
+                    </div>
 				</form>
 			</div>
 		</div>
@@ -381,8 +367,8 @@
 				type: "GET",
 				url: "/edit-business/"+eid,
 				success:function(response){
-					// console.log(response.business.brunch_id);	
-					$('#cmbBusinessId').val(eid);		
+					// console.log(response.business.brunch_id);
+					$('#cmbBusinessId').val(eid);
 					$('#eBusinessUnitName').val(response.business.b_name);
 					$('#eTitle').val(response.business.title);
 					$('#eHeading').val(response.business.heading);
@@ -391,15 +377,13 @@
 					$('#eOtherHeading').val(response.business.other_heading);
 					$('#eURL').val(response.business.url);
 					$("#eFilephoto").html(
-                        `<img src="public/img/${response.business.image}" width="100" class="img-fluid img-thumbnail">`);
-					$("#eAttach_file").html(
-                        `<img src="img/${response.business.attach_file}" width="100" class="img-fluid img-thumbnail">`);
-					
+                        `<img src="img/${response.business.image}" width="100" class="img-fluid img-thumbnail">`);
+
 				}
 			});
 		});
-    
-	});	
+
+	});
 </script>
 
 @endsection

@@ -10,13 +10,13 @@ use App\Http\Controllers\ProductcategoryController;
 use App\Http\Controllers\PartnercategoryController;
 use App\Http\Controllers\PortfoliocategoryController;
 use App\Http\Controllers\AboutcategoryController;
-use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AdditionalimageController;
 use App\Http\Controllers\OtherunitController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\AboutusController;
@@ -27,7 +27,6 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\FrontlogoController;
 use App\Http\Controllers\ProjectcategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AllprojectController;
@@ -44,7 +43,6 @@ use App\Http\Controllers\BoardofdirectorController;
 use App\Http\Controllers\MissionvissionController;
 use App\Http\Controllers\LogoprofileController;
 use App\Http\Controllers\GallarypicController;
-use App\Http\Controllers\AllmachineController;
 use App\Http\Controllers\OurteamController;
 use App\Http\Controllers\ProjectlistController;
 use App\Http\Controllers\ClientController;
@@ -57,12 +55,12 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SingleproductController;
 use App\Http\Controllers\AllserviceController;
 use App\Http\Controllers\BusinessunitController;
-use App\Http\Controllers\BsctrainingController;
-use App\Http\Controllers\DiplomatrainingController;
 use App\Http\Controllers\OurclientController;
 use App\Http\Controllers\WhychooseusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -104,10 +102,17 @@ Route::get('/custompage',[CustompageController::class,'index' ]);
 ////////////////////Board-of-Director/////////////////////////
 Route::get('/boardofdirectors',[BoardofdirectorController::class,'index' ]);
 
+////////////////////Membership/////////////////////////
+Route::get('/our-membership',[BoardofdirectorController::class,'membership' ]);
+
+////////////////////Company/////////////////////////
+Route::get('/our-company',[BoardofdirectorController::class,'company' ]);
 
 ////////////////////MIssion & Vission/////////////////////////
 Route::get('/missionvission',[MissionvissionController::class,'index' ]);
 
+////////////////////Events/////////////////////////
+Route::get('/event',[FrontendController::class,'event' ]);
 
 ////////////////////Logo & Profile/////////////////////////
 Route::get('/logoprofile',[LogoprofileController::class,'index' ]);
@@ -118,20 +123,15 @@ Route::get('/gallary',[GallarypicController::class,'index' ]);
 
 
 ////////////////////Business-Unit/////////////////////////
-Route::get('business_unit/{url}',[BusinessunitController::class,'business_unit' ]);
+Route::get('service_unit/{url}',[BusinessunitController::class,'service_unit' ]);
 
 
 ////////////////////Business-Unit/////////////////////////
-Route::get('business_unit/{url}/{id}',[OtherunitController::class,'business_unit' ]);
-
-
-
-////////////////////Others-Unit/////////////////////////
-// Route::get('others_unit/{id}',[OtherunitController::class,'others_unit' ]);
+Route::get('service_unit/{url}/{id}',[OtherunitController::class,'service_unit' ]);
 
 
 ////////////////////Our-Team/////////////////////////
-Route::get('/our-management-team',[OurteamController::class,'index' ]);
+Route::get('/our-team',[OurteamController::class,'index' ]);
 
 
 ////////////////////Project-List/////////////////////////
@@ -219,8 +219,15 @@ Route::delete('delete-submenu',[SubmenuController::class,'destroy' ]);
 Route::resource('aboutus', App\Http\Controllers\AboutusController::class);
 
 
+////////////////////Company/////////////////////////////////
+Route::resource('company', App\Http\Controllers\companyController::class);
+
+
 ////////////////////Quality-Technology/////////////////////////////////
 Route::resource('quality-technology', App\Http\Controllers\QualityController::class);
+
+////////////////////All-Events/////////////////////////////////
+Route::resource('events', App\Http\Controllers\EventController::class);
 
 
 ////////////////////About-categories/////////////////////////
@@ -244,12 +251,13 @@ Route::put('mission-update',[MissionController::class,'update' ]);
 Route::delete('delete-mission',[MissionController::class,'destroy' ]);
 
 
-
-////////////////////Frontlogo/////////////////////////
-Route::resource('frontlogo', FrontlogoController::class);
-Route::get('edit-frontlogo/{id}',[FrontlogoController::class,'edit' ]);
-Route::put('frontlogo-update',[FrontlogoController::class,'update' ]);
-Route::delete('delete-frontlogo',[FrontlogoController::class,'destroy' ]);
+////////////////////Slider/////////////////////////
+Route::get('slider-list',[SliderController::class, 'index'])->name('slider-list');
+Route::get('/slider-create', [SliderController::class, 'create'])->name('slider-create');
+Route::post('/slider-store', [SliderController::class, 'store'])->name('slider.store');
+Route::get('slider.edit/{id}',[SliderController::class,'edit'])->name('slider.edit');
+Route::put('/slider.update/{id}', [SliderController::class, 'update'])->name('slider.update');
+Route::get('/slider-delete/{id}', [SliderController::class, 'destroy'])->name('slider.delete');
 
 
 ////////////////////Profile/////////////////////////
@@ -267,7 +275,6 @@ Route::put('team-update',[TeamController::class,'update' ]);
 Route::delete('delete-team',[TeamController::class,'destroy' ]);
 
 
-
 ////////////////////Other Team-Member/////////////////////////
 Route::resource('teammember', TeammemberController::class);
 Route::get('edit-teammember/{id}',[TeammemberController::class,'edit' ]);
@@ -278,17 +285,12 @@ Route::delete('delete-teammember',[TeammemberController::class,'destroy' ]);
 
 
 ////////////////////Contact-Us/////////////////////////
-Route::resource('contactus', ContactusController::class);
-Route::get('edit-contactus/{id}',[ContactusController::class,'edit' ]);
-Route::put('contactus-update',[ContactusController::class,'update' ]);
-Route::delete('delete-contactus',[ContactusController::class,'destroy' ]);
+Route::resource('contact-us', ContactusController::class);
 
 
 // Setting All Route
 Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 Route::post('/settings/update', [SettingController::class, 'update'])->name('update.settings');
-// Route::get('/settings', [SettingController ::class, 'index'])->name('setting');
-// Route::post('/settings/update', [SettingController::class, 'update'])->name('update.setting');
 
 
 ////////////////////Business-categories/////////////////////////
@@ -348,20 +350,11 @@ Route::put('project-update',[ProjectController::class,'update' ]);
 Route::delete('delete-project',[ProjectController::class,'destroy' ]);
 
 
-
 ////////////////////All-Project/////////////////////////
 Route::resource('allproject', AllprojectController::class);
 Route::get('edit-allproject/{id}',[AllprojectController::class,'edit' ]);
 Route::put('allproject-update',[AllprojectController::class,'update' ]);
 Route::delete('delete-allproject',[AllprojectController::class,'destroy' ]);
-
-
-
-////////////////////All-Project/////////////////////////
-Route::resource('all-machineries', AllmachineController::class);
-Route::get('edit-all-machineries/{id}',[AllmachineController::class,'edit' ]);
-Route::put('all-machineries-update',[AllmachineController::class,'update' ]);
-Route::delete('delete-all-machineries',[AllmachineController::class,'destroy' ]);
 
 
 ////////////////////Partner-categories/////////////////////////
@@ -370,32 +363,11 @@ Route::get('edit-partnercategories/{id}',[PartnercategoryController::class,'edit
 Route::put('partnercategories-update',[PartnercategoryController::class,'update' ]);
 Route::delete('delete-partnercategories',[PartnercategoryController::class,'destroy' ]);
 
-
-
 ////////////////////Partner/////////////////////////
 Route::resource('partner', PartnerController::class);
 Route::get('edit-partner/{id}',[PartnerController::class,'edit' ]);
 Route::put('partner-update',[PartnerController::class,'update' ]);
 Route::delete('delete-partner',[PartnerController::class,'destroy' ]);
-
-
-
-
-////////////////////Bsc-Training/////////////////////////
-Route::resource('bsctraining', BsctrainingController::class);
-Route::get('edit-bsctraining/{id}',[BsctrainingController::class,'edit' ]);
-Route::put('bsctraining-update',[BsctrainingController::class,'update' ]);
-Route::delete('delete-bsctraining',[BsctrainingController::class,'destroy' ]);
-
-
-
-////////////////////Diploma-Training/////////////////////////
-Route::resource('diplomatraining', DiplomatrainingController::class);
-Route::get('edit-diplomatraining/{id}',[DiplomatrainingController::class,'edit' ]);
-Route::put('diplomatraining-update',[DiplomatrainingController::class,'update' ]);
-Route::delete('delete-diplomatraining',[DiplomatrainingController::class,'destroy' ]);
-
-
 
 ////////////////////Our-Clients/////////////////////////
 Route::resource('ourclient', OurclientController::class);
@@ -404,6 +376,11 @@ Route::put('ourclient-update',[OurclientController::class,'update' ]);
 Route::delete('delete-ourclient',[OurclientController::class,'destroy' ]);
 
 
+////////////////////Membership/////////////////////////
+Route::resource('/all-membership', MembershipController::class);
+Route::get('edit-membership/{id}',[MembershipController::class,'edit' ]);
+Route::put('membership-update',[MembershipController::class,'update' ]);
+Route::delete('delete-membership',[MembershipController::class,'destroy' ]);
 
 
 ////////////////////Frequently Asked Question/////////////////////////
@@ -411,8 +388,6 @@ Route::resource('frequentsection', FrequentsectionController::class);
 Route::get('edit-frequentsection/{id}',[FrequentsectionController::class,'edit' ]);
 Route::put('frequentsection-update',[FrequentsectionController::class,'update' ]);
 Route::delete('delete-frequentsection',[FrequentsectionController::class,'destroy' ]);
-
-
 
 ////////////////////Skill/////////////////////////
 Route::resource('skill', SkillController::class);
@@ -454,9 +429,6 @@ Route::put('product-update',[ProductController::class,'update' ]);
 Route::delete('delete-product',[ProductController::class,'destroy' ]);
 
 
-
-
-
 ////////////////////Gallery-categories/////////////////////////
 Route::resource('gallerycategories', GallerycategoryController::class);
 Route::get('edit-gallerycategories/{id}',[GallerycategoryController::class,'edit' ]);
@@ -464,14 +436,13 @@ Route::put('gallerycategories-update',[GallerycategoryController::class,'update'
 Route::delete('delete-gallerycategories',[GallerycategoryController::class,'destroy' ]);
 
 
-
-
 ////////////////////Gallery/////////////////////////
 Route::resource('galleries', GalleryController::class);
+Route::get('video/galleries',[GalleryController::class,'Videoindex' ]);
+Route::post('/video', [GalleryController::class, 'Videostore'])->name('video.store');
 Route::get('edit-galleries/{id}',[GalleryController::class,'edit' ]);
 Route::put('galleries-update',[GalleryController::class,'update' ]);
 Route::delete('delete-galleries',[GalleryController::class,'destroy' ]);
-
 
 
 ////////////////////Portfolio-categories/////////////////////////
@@ -481,23 +452,15 @@ Route::put('portfoliocategories-update',[PortfoliocategoryController::class,'upd
 Route::delete('delete-portfoliocategories',[PortfoliocategoryController::class,'destroy' ]);
 
 
-
 ////////////////////Portfolio/////////////////////////
 Route::resource('portfolio', PortfolioController::class);
 Route::get('edit-portfolio/{id}',[PortfolioController::class,'edit' ]);
 Route::put('portfolio-update',[PortfolioController::class,'update' ]);
 Route::delete('delete-portfolio',[PortfolioController::class,'destroy' ]);
 
-////////////////////Calender/////////////////////////
-Route::resource('calender', CalenderController::class);
-
-
-
 ////////////////////User/////////////////////////
 Route::resource('users', UserController::class);
 Route::get('edit-users/{id}',[UserController::class,'edit' ]);
 Route::put('users-update',[UserController::class,'update' ]);
 Route::delete('delete-users',[UserController::class,'destroy' ]);
-
-
 });
