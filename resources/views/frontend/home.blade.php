@@ -147,7 +147,7 @@
     </div>
 </section>
 
-<section class="project-v4">
+{{-- <section class="project-v4">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -193,7 +193,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <div class="padding-half bg-light-1">
     <div class="container">
