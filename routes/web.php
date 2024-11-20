@@ -220,7 +220,7 @@ Route::resource('aboutus', App\Http\Controllers\AboutusController::class);
 
 
 ////////////////////Company/////////////////////////////////
-Route::resource('company', App\Http\Controllers\companyController::class);
+Route::resource('company', App\Http\Controllers\CompanyController::class);
 
 
 ////////////////////Quality-Technology/////////////////////////////////

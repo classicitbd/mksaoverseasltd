@@ -1,41 +1,30 @@
 <footer id="site-footer" class="site-footer footer-v1">
     <div class="container" style="margin-top: -70px; margin-bottom: -35px;">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="widget-footer">
                     <h5 style="color: #bbbbbb">About Us</h5>
-                    <p style="text-align: justify;">2012, MKsaoverseas LTD is a number one printing company in Bangladesh.
-                        MKsaoverseas LTD is your global brand packaging and woven trim and accessories solution, more dynamic
-                    to grab new technologies.
-                    </p>
+                    <p style="text-align: justify;">{{ get_setting('business_description')->value ?? 'null' }}</p>
                 </div>
             </div>
             <div class="col-lg-1 col-md-6 col-sm-6 col-12"></div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="widget-footer">
                     <h5 style="color: #bbbbbb">Quick Links</h5>
                     <ul class="list-items">
                         <li class="list-item"><a href="#">Privacy Policy</a></li>
                         <li class="list-item"><a href="#">Environmental Policy</a></li>
                         <li class="list-item"><a href="#">Compliance</a></li>
-                        <li class="list-item"><a href="#">Contact Us</a></li>
+                        <li class="list-item"><a href="{{url('/contact')}}">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="widget-footer">
-                    <h5 style="color: #bbbbbb">Factory Locations</h5>
-                    <p style="margin-bottom: 0px! important;">90/01 Noraibagh, Mirpara, Amulia road Demra, Dhaka-1361</p>
-                    <strong>Phone:</strong> 7500554, 7501090(RAI)</br>
-                    <strong>Fax:</strong> 880-2-7501090</br>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="widget-footer">
                     <h5 style="color: #bbbbbb">Contact Us</h5>
-                    <strong>Address:</strong><p style="margin-bottom: 0px! important;">37/2, Purana Paltan, Zaman Tower(7th Floor) Dhaka-1000, Bangladesh</p>
-                    <strong>Phone:</strong> +8801713001870</br>
-                    <strong>Email:</strong> info@mksaoverseasltd.com
+                    <strong>Address:</strong> {{ get_setting('business_address')->value ?? 'null' }}</br>
+                    <strong>Phone:</strong> {{ get_setting('phone')->value ?? 'null' }}</br>
+                    <strong>Email:</strong> {{ get_setting('email')->value ?? 'null' }}
                     <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-1343 pt-3" method="post">
                         <div class="mc4wp-form-fields">
                             <div class="subscribe-inner-form">

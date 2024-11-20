@@ -80,6 +80,12 @@
                                             <input type="hidden" name="types[]" value="business_address">
                                             <textarea class="form-control" id="business_address" cols="2" name="business_address" placeholder="Write address here">{{ get_setting('business_address')->value ?? 'Null' }}</textarea>
                                         </div>
+
+                                        <div class="col-sm-12 mb-3">
+                                            <label for="business_description" class="col-form-label" style="font-weight: bold;">Description</label>
+                                            <input type="hidden" name="types[]" value="business_description">
+                                            <textarea class="form-control" id="business_description" cols="2" name="business_description" placeholder="Write address here">{{ get_setting('business_description')->value ?? 'Null' }}</textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
