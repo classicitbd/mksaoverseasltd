@@ -95,17 +95,6 @@
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
 								<div class="col-sm-2">
-									<label class="col-form-label">Qualification:&nbsp;<span class="text-danger">*</span></label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="txtQualification" name="txtQualification" required>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
 									<label class="col-form-label">Type:&nbsp;<span class="text-danger">*</span></label>
 								</div>
 								<div class="col-sm-10">
@@ -192,19 +181,6 @@
 								</div>
 							</div>
 						</div>
-
-
-						<div class="col-sm-12">
-							<div class="input-group mb-5">
-								<div class="col-sm-2">
-									<label class="col-form-label">Qualification:&nbsp;<span class="text-danger">*</span></label>
-								</div>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="eQualification" name="txtQualification" required>
-								</div>
-							</div>
-						</div>
-
 
 						<div class="col-sm-12">
 							<div class="input-group mb-5">
@@ -322,10 +298,8 @@
 				type: "GET",
 				url: "/edit-team/"+eid,
 				success:function(response){
-					//console.log(response.team.details);
 					$('#cmbTeamId').val(eid);
 					$('#eName').val(response.team.name);
-					$('#eQualification').val(response.team.qualification);
 					$('#eType').val(response.team.type);
                     $('#eDesignation').val(response.team.designation);
 					$('#eDetails').summernote('code', response.team.details);

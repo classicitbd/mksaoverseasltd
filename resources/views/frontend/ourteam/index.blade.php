@@ -48,7 +48,6 @@
                             </div>
                             <div class="team-info">
                                 <h6 style="margin: 0px;">{{$val->name}}</h6>
-                                <span>{{$val->qualification}}</span>
                                 <p style="margin: 0 0 5px;">{{$val->designation}}</p>
                             </div>
                         </div>
@@ -73,7 +72,6 @@
                             </div>
                             <div class="team-info">
                                 <h6 style="margin: 0px;">{{$val->name}}</h6>
-                                <span>{{$val->qualification}}</span>
                                 <p style="margin: 0 0 5px;">{{$val->designation}}</p>
                             </div>
                         </div>
@@ -98,7 +96,6 @@
                             </div>
                             <div class="team-info">
                                 <h6 style="margin: 0px;">{{$val->name}}</h6>
-                                <span>{{$val->qualification}}</span>
                                 <p style="margin: 0 0 5px;">{{$val->designation}}</p>
                             </div>
                         </div>
