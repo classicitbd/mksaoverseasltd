@@ -147,54 +147,6 @@
     </div>
 </section>
 
-{{-- <section class="project-v4">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="ot-heading" style="padding-top: 20px; margin-bottom: 5px;">
-                    <h2 class="main-heading">OUR PRODUCTS</h2>
-                </div>
-                <p>From sample approvals to final dispatch, our products are checked in order to ensure their quality.</p>
-                <div class="space-10"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="project-filter-wrapper">
-                    <ul class="project_filters">
-                        <li><a href="#" data-filter="*" class="selected">All</a></li>
-                        @foreach($productcategory as $val)
-                            <li><a href="" data-filter=".{{ $val->id }}">{{ $val->name }}</a></li>
-                        @endforeach
-                    </ul>
-
-                    <div class="projects-grid projects-style-1 projects-col3">
-                        @foreach($product as $val)
-                            <div class="project-item {{ $val->category }}">
-                                <div class="projects-box">
-                                    <div class="projects-thumbnail">
-                                        <a href="#">
-                                            <img src="{{ asset('img/' . $val->image) }}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="portfolio-info">
-                                        <a class="overlay" href="#"></a>
-                                        <div class="portfolio-info-inner">
-                                            <p class="portfolio-cates">
-                                                <h5>{{ $val->title }}</h5>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
-
 <div class="padding-half bg-light-1">
     <div class="container">
         <div class="row">
