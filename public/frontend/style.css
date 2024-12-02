@@ -11957,3 +11957,15 @@ svg:not(:root) {
 .partner_title h3 {
     color: #fff;
 }
+
+.footer-text {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-logo {
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+    padding: 2px;
+}

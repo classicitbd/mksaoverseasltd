@@ -8,7 +8,7 @@
                 <ul id="breadcrumbs" class="breadcrumbs none-style">
                     <li><a href="{{url('/home')}}">Home</a></li>
                     <li class="active">Choosen</li>
-                </ul>    
+                </ul>
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
                                         <span class="num" data-to="{{$val->client_num}}" data-time="2000">0</span>
                                         <span>+</span>
                                     </div>
-                                    <h6 class="text-white">active Clients</h6>                             
+                                    <h6 class="text-white">active Clients</h6>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4 mb-lg-0">
@@ -74,7 +74,7 @@
                                         <span class="num" data-to="{{$val->project_num}}" data-time="2000">0</span>
                                         <span>+</span>
                                     </div>
-                                    <h6 class="text-white">projects done</h6>                              
+                                    <h6 class="text-white">projects done</h6>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4 mb-sm-0">
@@ -83,7 +83,7 @@
                                         <span class="num" data-to="{{$val->support_num}}" data-time="2000">0</span>
                                         <span>+</span>
                                     </div>
-                                    <h6 class="text-white">Supports</h6>                              
+                                    <h6 class="text-white">Supports</h6>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 text-center">
@@ -92,7 +92,7 @@
                                         <span class="num" data-to="{{$val->worker_num}}" data-time="2000">0</span>
                                         <span>+</span>
                                     </div>
-                                    <h6 class="text-white">Hard Workere</h6>                             
+                                    <h6 class="text-white">Hard Workere</h6>
                                 </div>
                             </div>
                             @endforeach
@@ -111,7 +111,7 @@
             </div>
             <div class="space-30"></div>
             <div class="row">
-                @foreach($service as $val) 
+                @foreach($service as $val)
                 <div class="col-lg-4 col-md-6 mb-30">
                     <div class="icon-box-s2 s2 border-s1 bg bg{{$val->id}} text-center">
                         <style>
@@ -138,17 +138,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="partner_title">
-                        <h3>OUR PARTNER</h3>
-                    </div>
                     <div class="partners">
-                        <div class="owl-carousel owl-theme home-client-carousel"> 
-                            @foreach($partner as $val)     
+                        <div class="owl-carousel owl-theme home-client-carousel">
+                            @foreach($partner as $val)
                             <div class="partners-slide">
                                 <a href="#" class="client-logo">
                                     <figure class="partners-slide-inner">
                                         <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
-                                    </figure>                             
+                                    </figure>
                                 </a>
                             </div>
                             @endforeach

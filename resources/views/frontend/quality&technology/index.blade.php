@@ -8,11 +8,11 @@
                 <ul id="breadcrumbs" class="breadcrumbs none-style">
                     <li><a href="{{url('/home')}}">Home</a></li>
                     <li class="active">Quality & Technology</li>
-                </ul>    
+                </ul>
             </div>
         </div>
     </div>
-    
+
     <section class="team-slills" style="padding-top: 50px;">
         <div class="container mb-80 mt-50">
             <div class="row">
@@ -29,22 +29,19 @@
         </div>
     </section>
 
-    <section class="pt-5">  
+    <section class="pt-5">
         <div class="padding-half bg-light-1">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="partner_title">
-                            <h3>OUR PARTNER</h3>
-                        </div>
                         <div class="partners">
-                            <div class="owl-carousel owl-theme home-client-carousel"> 
-                                @foreach($partner as $val)     
+                            <div class="owl-carousel owl-theme home-client-carousel">
+                                @foreach($partner as $val)
                                 <div class="partners-slide">
                                     <a href="#" class="client-logo">
                                         <figure class="partners-slide-inner">
                                             <img class="partners-slide-image" src="{{ asset('public/img/' . $val->image) }}" alt="">
-                                        </figure>                             
+                                        </figure>
                                     </a>
                                 </div>
                                 @endforeach

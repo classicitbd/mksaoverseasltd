@@ -8,7 +8,7 @@
                 <ul id="breadcrumbs" class="breadcrumbs none-style">
                     <li><a href="{{url('/home')}}">Home</a></li>
                     <li class="active">Project List</li>
-                </ul>    
+                </ul>
             </div>
         </div>
     </div>
@@ -41,11 +41,11 @@
                             <li><a href="" data-filter=".9">Testing & Commissioning</a></li>
                             <li><a href="" data-filter=".10">Busbar Trunking System</a></li>
                             <li><a href="" data-filter=".11">Transmission Line Supervision</a></li>
-                            <li><a href="" data-filter=".12">Electrical Design</a></li>  
+                            <li><a href="" data-filter=".12">Electrical Design</a></li>
                         </ul>
 
                         <div class="projects-grid projects-style-1 projects-col3">
-                            @foreach($allproject as $val)   
+                            @foreach($allproject as $val)
                             <div class="project-item {{$val->ap_group}}">
                                 <div class="projects-box">
                                     <div class="projects-thumbnail">
@@ -59,7 +59,7 @@
                                             <h5><a href="{{$val->url}}">{{$val->title}}</a></h5>
                                             <p class="portfolio-cates">
                                                 <h5>{{$val->ap_name}}</h5>
-                                            </p> 
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -72,22 +72,19 @@
         </div>
     </section>
 
-    <section class="pt-5">  
+    <section class="pt-5">
         <div class="padding-half bg-light-1">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="partner_title">
-                            <h3>OUR PARTNER</h3>
-                        </div>
                         <div class="partners">
-                            <div class="owl-carousel owl-theme home-client-carousel"> 
-                                @foreach($partner as $val)     
+                            <div class="owl-carousel owl-theme home-client-carousel">
+                                @foreach($partner as $val)
                                 <div class="partners-slide">
                                     <a href="#" class="client-logo">
                                         <figure class="partners-slide-inner">
                                             <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
-                                        </figure>                             
+                                        </figure>
                                     </a>
                                 </div>
                                 @endforeach

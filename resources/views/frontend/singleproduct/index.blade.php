@@ -8,7 +8,7 @@
                 <ul id="breadcrumbs" class="breadcrumbs none-style">
                     <li><a href="{{url('/home')}}">Home</a></li>
                     <li class="active">Products</li>
-                </ul>    
+                </ul>
             </div>
         </div>
     </div>
@@ -42,28 +42,28 @@
                                 <div>
                                     <a class="" href="#zero">
                                         <img src="{{url('frontend/images/product/product.png')}}" alt="">
-                                    </a> 
+                                    </a>
                                 </div>
                             </div>
                             <div class="item">
                                 <div>
                                     <a class="" href="#one">
                                         <img src="{{url('frontend/images/product/product2.png')}}" alt="">
-                                    </a> 
+                                    </a>
                                 </div>
                             </div>
                             <div class="item">
                                 <div>
                                     <a class="" href="#two">
                                         <img src="{{url('frontend/images/product/product3.png')}}" alt="">
-                                    </a> 
+                                    </a>
                                 </div>
                             </div>
                             <div class="item">
                                 <div>
                                     <a class="" href="#three">
                                         <img src="{{url('frontend/images/product/product4.png')}}" alt="">
-                                    </a> 
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                                         <textarea id="comment" name="comment" cols="45" rows="8" placeholder="Comment *" required=""></textarea>
                                     </p>
                                     <p class="form-submit">
-                                        <input name="submit" type="submit" id="submit" class="octf-btn" value="Submit"> 
+                                        <input name="submit" type="submit" id="submit" class="octf-btn" value="Submit">
                                     </p>
                                 </form>
                             </div>
@@ -228,13 +228,13 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product-item">
-                        <div class="product-media"> 
+                        <div class="product-media">
                             <a href="single-product.html">
                                 <img src="{{url('frontend/images/product/pp1.png')}}" class="" alt="">
                             </a>
                             <div class="wrapper-add-to-cart">
                                 <div class="add-to-cart-inner">
-                                    <a href="cart.html" class="octf-btn octf-btn-primary">Add to cart </a>           
+                                    <a href="cart.html" class="octf-btn octf-btn-primary">Add to cart </a>
                                 </div>
                             </div>
                         </div>
@@ -244,13 +244,13 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product-item">
-                        <div class="product-media"> 
+                        <div class="product-media">
                             <a href="single-product.html">
                                 <img src="{{url('frontend/images/product/product1.png')}}" class="" alt="">
                             </a>
                             <div class="wrapper-add-to-cart">
                                 <div class="add-to-cart-inner">
-                                    <a href="cart.html" class="octf-btn octf-btn-primary">Add to cart </a>           
+                                    <a href="cart.html" class="octf-btn octf-btn-primary">Add to cart </a>
                                 </div>
                             </div>
                         </div>
@@ -260,13 +260,13 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product-item">
-                        <div class="product-media"> 
+                        <div class="product-media">
                             <a href="single-product.html">
                                 <img src="{{url('frontend/images/product/pp2.png')}}" class="" alt="">
                             </a>
                             <div class="wrapper-add-to-cart">
                                 <div class="add-to-cart-inner">
-                                    <a href="cart.html" class="octf-btn octf-btn-primary">Add to cart </a>           
+                                    <a href="cart.html" class="octf-btn octf-btn-primary">Add to cart </a>
                                 </div>
                             </div>
                         </div>
@@ -276,43 +276,40 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product-item">
-                        <div class="product-media"> 
+                        <div class="product-media">
                             <a href="single-product.html">
                                 <span class="onsale">Sale!</span>
                                 <img src="{{url('frontend/images/product/product1.png')}}" class="" alt="">
                             </a>
                             <div class="wrapper-add-to-cart">
                                 <div class="add-to-cart-inner">
-                                    <a href="cart.html" class="octf-btn octf-btn-primary">Add to cart </a>           
+                                    <a href="cart.html" class="octf-btn octf-btn-primary">Add to cart </a>
                                 </div>
                             </div>
                         </div>
                         <h2 class="woocommerce-loop-product__title"><a href="single%3dproduct.html">Siemens converter</a></h2>
                         <span class="price-product">
-                            <del><span class="amount"><span>$</span>159.99</span></del> 
+                            <del><span class="amount"><span>$</span>159.99</span></del>
                             <ins><span class="amount"><span>$</span>129.99</span></ins>
                         </span>
                     </div>
                 </div>
             </div>
         </div>
-    </section> 
-    
+    </section>
+
     <div class="padding-half bg-light-1">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="partner_title">
-                        <h3>OUR PARTNER</h3>
-                    </div>
                     <div class="partners">
-                        <div class="owl-carousel owl-theme home-client-carousel"> 
-                            @foreach($partner as $val)     
+                        <div class="owl-carousel owl-theme home-client-carousel">
+                            @foreach($partner as $val)
                             <div class="partners-slide">
                                 <a href="#" class="client-logo">
                                     <figure class="partners-slide-inner">
                                         <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
-                                    </figure>                             
+                                    </figure>
                                 </a>
                             </div>
                             @endforeach
