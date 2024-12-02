@@ -38,14 +38,13 @@
                     </tr>
                 </thead>
                 <tbody> 
-                    @forelse ($partnercategories as $partnercategories)
+                    @forelse ($partnercategories as $key=> $partnercategories)
                     <tr class="odd">
-                        <td>{{$partnercategories-> id}}</td>
+                        <td>{{ $key+1 }}</td>
                         <td>{{$partnercategories-> name}}</td>
                         <td>{{$partnercategories-> created_at}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_partnercategories"><i class="fas fa-eye"></i></a>&nbsp;
 								<button type="button" value="{{$partnercategories->id}}" class="btn btn-primary" id="editpartnercategories" ><i class="fas fa-pencil-alt" ></i></button>&nbsp;
                                 <button type="button" value="{{$partnercategories->id}}" class="btn btn-danger" id="partnercategoriesDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>

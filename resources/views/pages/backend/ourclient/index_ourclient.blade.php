@@ -45,9 +45,9 @@
                     </tr>
                 </thead>
                 <tbody> 
-                    @forelse ($ourclient as $ourclient)	
+                    @forelse ($ourclient as $key=> $ourclient)	
                     <tr class="odd">
-                        <td>{{$ourclient-> id}}</td>
+                        <td>{{ $key+1 }}</td>
 						<td>
 						<img src="{{asset('public/img/'.$ourclient->logo_img)}}" height="70px" width="70px" alt="">
 						</td>
@@ -55,7 +55,6 @@
                         <td>{{$ourclient-> c_type}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_ourclient"><i class="fas fa-eye"></i></a>&nbsp;
 								<button type="button" value="{{$ourclient->id}}" class="btn btn-primary" id="editourclient" ><i class="fas fa-pencil-alt" ></i> </button>&nbsp;
                                 <button type="button" value="{{$ourclient->id}}" class="btn btn-danger" id="ourclientDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>

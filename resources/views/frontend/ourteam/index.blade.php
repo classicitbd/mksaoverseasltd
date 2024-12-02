@@ -34,76 +34,25 @@
                 </div>
             </div>
 
-            @if(count($directorTeam) > 0)
             <div class="container">
-                <div class="row no-margin team_text">
-                    <h4 class="team_text_h1">Managing Directors</h4>
-                </div>
+                <div class="row no-margin team_text"></div>
                 <div class="row no-margin">
-                    @foreach($directorTeam as $val)
-                    <div class="col-lg-3 col-md-6 pb-2">
-                        <div class="team-wrap v3">
-                            <div class="team-thumb">
-                                <img src="{{asset('img/'.$val->image)}}" alt="" style="height: 275px; width: 225px; object-fit: cover;">
-                            </div>
-                            <div class="team-info">
-                                <h6 style="margin: 0px;">{{$val->name}}</h6>
-                                <p style="margin: 0 0 5px;">{{$val->designation}}</p>
+                    @foreach($teams as $val)
+                        <div class="col-lg-3 col-md-6 pb-2 mt-3">
+                            <div class="team-wrap v3">
+                                <div class="team-thumb">
+                                    <img src="{{asset('img/'.$val->image)}}" alt="" style="height: 275px; width: 225px; object-fit: cover;">
+                                </div>
+                                <div class="team-info">
+                                    <h6 style="margin: 0px;">{{$val->name}}</h6>
+                                    <p style="margin: 0 0 5px;">{{$val->designation}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
-            @endif
             <div class="space-20"></div>
-
-            @if(count($marketingTeam) > 0)
-            <div class="container">
-                <div class="row no-margin team_text">
-                    <h4 class="team_text_h1">Sales & Marketing</h4>
-                </div>
-                <div class="row no-margin">
-                    @foreach($marketingTeam as $val)
-                    <div class="col-lg-3 col-md-6 pb-2">
-                        <div class="team-wrap v3">
-                            <div class="team-thumb">
-                                <img src="{{asset('img/'.$val->image)}}" alt="" style="height: 275px; width: 225px; object-fit: cover;">
-                            </div>
-                            <div class="team-info">
-                                <h6 style="margin: 0px;">{{$val->name}}</h6>
-                                <p style="margin: 0 0 5px;">{{$val->designation}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            @endif
-
-            <div class="space-20"></div>
-            @if(count($accountTeam) > 0)
-            <div class="container">
-                <div class="row no-margin team_text">
-                    <h4 class="team_text_h1">Accounts Management and Executives</h4>
-                </div>
-                <div class="row no-margin">
-                    @foreach($accountTeam as $val)
-                    <div class="col-lg-3 col-md-6 pb-2">
-                        <div class="team-wrap v3">
-                            <div class="team-thumb">
-                                <img src="{{asset('img/'.$val->image)}}" alt="" style="height: 275px; width: 225px; object-fit: cover;">
-                            </div>
-                            <div class="team-info">
-                                <h6 style="margin: 0px;">{{$val->name}}</h6>
-                                <p style="margin: 0 0 5px;">{{$val->designation}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            @endif
         </div>
     </section>
 
@@ -112,6 +61,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="partner_title">
+                            <h3>OUR PARTNER</h3>
+                        </div>
                         <div class="partners">
                             <div class="owl-carousel owl-theme home-client-carousel">
                                 @foreach($partner as $val)

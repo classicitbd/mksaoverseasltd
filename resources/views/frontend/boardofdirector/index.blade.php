@@ -106,6 +106,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="partner_title">
+                        <h3>OUR PARTNER</h3>
+                    </div>
                     <div class="partners">
                         <div class="owl-carousel owl-theme home-client-carousel">
                             @foreach($partner as $val)
@@ -124,5 +127,4 @@
         </div>
     </div>
 </div>
-
 @endsection

@@ -5830,7 +5830,7 @@ div.swiper-pagination-custom, .swiper-pagination-fraction {
 }
 /* Background */
 .bg-light-1 {
-    background-color: #F8F8F8;
+    background-color: #0868a0;
 }
 .bg-light-2 {
     background-color: #F2F2F2;
@@ -11952,4 +11952,8 @@ svg:not(:root) {
 }
 .c-hight{
   height: 400px;
+}
+
+.partner_title h3 {
+    color: #fff;
 }

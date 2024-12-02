@@ -17,7 +17,7 @@ class BusinessunitController extends Controller
 
         $SubmenuId = Submenu::where('submenu_url',$request->url)->select('id')->first();
 
-        $data['BusinessData'] = Business::where('b_name',$SubmenuId->id)->first();
+        $data['BusinessData'] = Business::where('b_name',$SubmenuId->id)->latest()->first();
 
         $data['partner'] = Partner::select('id','image')->get();
 

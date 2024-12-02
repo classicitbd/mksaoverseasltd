@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use Request;
+use Illuminate\Http\Request;
+
 
 class EventController extends Controller
 {
@@ -25,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.backend.event.create");
     }
 
     /**
@@ -36,7 +37,20 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = new Event();
+        $event->title =$request->txtTitle;
+        $event->heading =$request->txtHeading;
+        $event->details =$request->txtDetails;
+
+        if(isset($request->image)){
+            $imageName = time().(rand(100,1000)).'.'.$request->image->extension();
+            $event->image=$imageName;
+            $event->update();
+            $request->image->move(public_path('img'),$imageName);
+        }
+
+        $event->save();
+        return redirect(route('events.index'))->with('success','Created Successfully.');
     }
 
     /**
@@ -58,7 +72,7 @@ class EventController extends Controller
      */
     public function edit($id){
         $event = Event::find($id);
-        return view("pages.backend.event.index", compact('event'));
+        return view("pages.backend.event.edit", compact('event'));
     }
 
     /**
@@ -71,29 +85,20 @@ class EventController extends Controller
     public function update(Request $request,$id){
         $event = Event::find($id);
 
-        if(Request::has('txtTitle')){
-            $event->title=strval(Request::input('txtTitle'));
-        }
-
-        if(Request::has('txtHeading')){
-            $event->heading=strval(Request::input('txtHeading'));
-        }
-
-        if(Request::has('txtDetails')){
-            $event->details=strval(Request::input('txtDetails'));
-        }
+        $event->title =$request->txtTitle;
+        $event->heading =$request->txtHeading;
+        $event->details =$request->txtDetails;
 
 
-        if(Request::hasFile('image')){
-            $file = Request::file('image');
+        if($request->hasFile('image')){
+            $file = $request->file('image');
             $imageName = time().(rand(100,1000)).'.'.$file->extension();
             $event->image=$imageName;
             $file->move(public_path('img'), $imageName);
         }
 
         $event->update();
-        return redirect()->back()
-        ->with('success',' Updated successfully');
+        return redirect(route('events.index'))->with('success',' Updated successfully');
     }
 
     /**
@@ -102,8 +107,12 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
-    {
-        //
+
+
+    public function destroy(Request $request){
+        $event_id= $request->input('d_event');
+        $event= Event::find($event_id);
+        $event->delete();
+        return redirect()->back()->with('success',' Deleted successfully');
     }
 }

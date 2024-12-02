@@ -8,49 +8,30 @@
     @endforeach
 </div>
 
-<section class="over-hidden" style="padding-top:60px; padding-bottom:60px;">
+<section class="over-hidden" style="padding-top:50px; padding-bottom:50px;">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 col-md-12 align-self-center">
-                <div class="ot-heading">
-                    <span>// about company</span>
-                    <h2 class="main-heading">Industrial Printing</h2>
+            @foreach($aboutus as $val)
+                <div class="col-lg-5 col-md-12 align-self-center">
+                    <div class="ot-heading">
+                        <span>// {{ $val->heading }}</span>
+                    </div>
+                    <p class="mb-15" style="text-align: justify;">{!! \Illuminate\Support\Str::words(strip_tags($val->details), 100,'....')  !!}</p>
                 </div>
-                <p class="mb-15">MKsaoverseas LTD have well experienced skill professional team who can provide you
-                    modern & innovative idea for your requirement as well as economic fruitful solution.</p>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="icon-box-s1">
-                            <div class="icon-main"><span class="flaticon-medal"></span></div>
-                            <h5>Experience</h5>
-                            <div class="line-box"></div>
-                            <p>Our great team of more than 40+ experts.</p>
+                <div class="offset-lg-1 col-lg-6 col-md-12 align-self-center">
+                    <div class="about-right">
+                        <div class="home-about-video d-flex justify-content-center">
+                            <img class="video-btn align-self-center" src="{{ asset('img/' . $val->image) }}" alt="">
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="icon-box-s1">
-                            <div class="icon-main"><span class="flaticon-gear"></span></div>
-                            <h5>Quick Support</h5>
-                            <div class="line-box"></div>
-                            <p>We’ll help you test bold new ideas while sharing your.</p>
-                        </div>
-                    </div>
-                    <div class="space-15"></div>
-                </div>
-            </div>
-            <div class="offset-lg-1 col-lg-6 col-md-12 align-self-center">
-                <div class="about-right">
-                    <div class="home-about-video d-flex justify-content-center">
-                        <img class="video-btn align-self-center" src="{{url('frontend/images/About-1.jpg')}}" alt="">
-                    </div>
-                    <div class="home-about-btn">
-                        <div class="ot-button">
-                            <a href="{{url('/about')}}" class="btn-details"><i class="flaticon-right-arrow-1"></i> LEANR MORE ABOUT US</a>
-                        <div class="space-15"></div>
+                        <div class="home-about-btn">
+                            <div class="ot-button">
+                                <a href="{{url('/about')}}" class="btn-details"><i class="flaticon-right-arrow-1"></i> LEANR MORE ABOUT US</a>
+                            <div class="space-15"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -67,15 +48,12 @@
             </div>
         </div>
         <div class="row">
-            @foreach($service as $val)
+            @foreach($service_unit as $val)
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="icon-box-s2 s1 pb-60">
-                    <div class="icon-main">
-                        <span class="{!! $val->icon !!}"></span>
-                    </div>
                     <div class="content-box">
                         <h5>{{$val->title}}</h5>
-                        <p style="text-align: justify;">{!! $val->details !!}</p>
+                        <p style="text-align: justify;">{!! \Illuminate\Support\Str::words(strip_tags($val->details), 30,'....')  !!}</p>
                     </div>
                 </div>
             </div>
@@ -151,16 +129,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                    <div class="partners">
+                <div class="partner_title">
+                    <h3>OUR PARTNER</h3>
+                </div>
+                <div class="partners">
                     <div class="owl-carousel owl-theme home-client-carousel">
                         @foreach($partner as $val)
-                        <div class="partners-slide">
-                            <a href="#" class="client-logo">
-                                <figure class="partners-slide-inner">
-                                    <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
-                                </figure>
-                            </a>
-                        </div>
+                            <div class="partners-slide">
+                                <a href="#" class="client-logo">
+                                    <figure class="partners-slide-inner">
+                                        <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
+                                    </figure>
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 </div>

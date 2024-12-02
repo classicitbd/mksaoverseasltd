@@ -49,8 +49,12 @@
                     <tr class="odd">
                         <td>{{ $key+1 }}</td>
 						<td>
-						<img src="{{asset('img/'.$val->image)}}" height="70px" width="70px" alt="">
-						</td>
+                            @if(pathinfo($val->image, PATHINFO_EXTENSION) == 'pdf')
+                                <embed src="{{ asset('img/'.$val->image) }}" type="application/pdf" height="70px" width="70px" />
+                            @else
+                                <img src="{{ asset('img/'.$val->image) }}" height="70px" width="70px" alt="File" />
+                            @endif
+                        </td>
                         <td>{{$val-> title}}</td>
                         <td>{{$val-> heading}}</td>
                         <td class="text-right py-0 align-middle">
@@ -269,8 +273,18 @@
 					$('#eTitle').val(response.membership.title);
 					$('#eHeading').val(response.membership.heading);
 					$('#eDetails').summernote('code', response.membership.details);
-					$("#eFilephoto").html(
-                        `<img src="img/${response.membership.image}" width="100" class="img-fluid img-thumbnail">`);
+                    let filePath = response.membership.image;
+                    let fileExtension = filePath.split('.').pop().toLowerCase();
+
+                    if (fileExtension === 'pdf') {
+                        $("#eFilephoto").html(
+                            `<embed src="img/${filePath}" type="application/pdf" width="100" class="img-fluid img-thumbnail">`
+                        );
+                    } else {
+                        $("#eFilephoto").html(
+                            `<img src="img/${filePath}" width="100" class="img-fluid img-thumbnail">`
+                        );
+                    }
 				}
 			});
 		});

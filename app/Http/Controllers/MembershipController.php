@@ -47,7 +47,6 @@ class MembershipController extends Controller
 			$membership->update();
 			$request->filePhoto->move(public_path('img'),$imageName);
 		}
-
         $membership->save();
         return back()->with('success','Created Successfully.');
 

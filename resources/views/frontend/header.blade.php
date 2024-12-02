@@ -1,3 +1,11 @@
+<style>
+    /*.main-navigation > ul > li {*/
+    /*    position: initial;*/
+    /*}*/
+    /*.main-navigation ul li .mega {*/
+    /*    width: -webkit-fill-available !important;*/
+    /*}*/
+</style>
 <header id="site-header" class="site-header sticky-header header-static">
     <!-- Main Header start -->
     <div class="header-topbar style-2">
@@ -46,29 +54,27 @@
                                                 <li><a href="{{asset('attach-file/'.$val->attach_file)}}" target="_blank">COMPANY PROFILE</a></li>
                                             @endforeach
                                             <li><a href="{{url('/boardofdirectors')}}">BOARD OF DIRECTORS</a></li>
+                                                <li><a href="{{url('/our-membership')}}">Membership</a></li>
                                             <li><a href="{{url('/gallary')}}">GALLARY</a></li>
                                         </ul>
                                     </li>
+                                    
                                     @foreach ($menu as $val)
-                                    <?php
-                                    $subMenu = \App\Models\Submenu::where('menu_id',$val->id)->get();
-                                    ?>
-                                    <li class="@if(sizeof($subMenu) > 1) menu-item-has-children @endif ">
-                                    <a href="{{url($val->url)}}">{{ $val->m_name }}
-                                    @if(sizeof($subMenu) > 1)  <i class="fa fa-chevron-down" style="font-size: 9px;" aria-hidden="true"></i>@endif
-                                    </a>
-                                    @if(sizeof($subMenu) > 1)
-                                    <ul class="sub-menu mega">
-                                    <li>
-                                    <div class="row">
-                                    @foreach ($subMenu as $val)
-                                    <div class="col-md-4"><a href="{{url('service_unit/'.$val->submenu_url)}}">{{ $val->submenu_name }}</a></div>
-                                    @endforeach
-                                    </div>
-                                    </li>
-                                    </ul>
-                                    @endif
-                                    </li>
+                                        <?php
+                                            $subMenu = \App\Models\Submenu::where('menu_id',$val->id)->get();
+                                        ?>
+                                        <li class="menu-item-has-children current-menu-item current-menu-ancestor">
+                                            <a href="{{url($val->url)}}">{{ $val->m_name }}
+                                                @if(sizeof($subMenu) > 0)  <i class="fa fa-chevron-down" style="font-size: 9px;" aria-hidden="true"></i>@endif
+                                            </a>
+                                            @if(sizeof($subMenu) > 0)
+                                            <ul class="sub-menu">
+                                                @foreach ($subMenu as $val)
+                                                    <li><a href="{{url('service_unit/'.$val->submenu_url)}}">{{ $val->submenu_name }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                            @endif
+                                        </li>
                                     @endforeach
                                 </ul>
                             </nav>
@@ -101,6 +107,7 @@
                                     <li><a href="{{asset('attach-file/'.$val->attach_file)}}" target="_blank">COMPANY PROFILE</a></li>
                                 @endforeach
                                 <li><a href="{{url('/boardofdirectors')}}">BOARD OF DIRECTORS</a></li>
+                                <li><a href="{{url('/our-membership')}}">Membership</a></li>
                                 <li><a href="{{url('/gallary')}}">GALLARY</a></li>
                             </ul>
                         </li>
@@ -108,9 +115,9 @@
                         <?php
                         $subMenu = \App\Models\Submenu::where('menu_id',$val->id)->get();
                         ?>
-                        <li class="@if(sizeof($subMenu) > 1) menu-item-has-children @endif ">
+                        <li class="@if(sizeof($subMenu) > 0) menu-item-has-children @endif ">
                         <a href="{{url($val->url)}}">{{ $val->m_name }}</a>
-                        @if(sizeof($subMenu) > 1)
+                        @if(sizeof($subMenu) > 0)
                         <ul class="sub-menu">
                         @foreach ($subMenu as $val)
                         <li><a href="{{url('service_unit/'.$val->submenu_url)}}">{{ $val->submenu_name }}</a></li>
@@ -125,13 +132,3 @@
         </div>
     </div>
 </header>
-
-<style>
-.main-navigation > ul > li {
-position: initial;
-}
-.main-navigation ul li .mega {
-width: -webkit-fill-available !important;
-}
-
-</style>

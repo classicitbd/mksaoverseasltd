@@ -1,4 +1,3 @@
-
 RewriteOptions inherit
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
@@ -21,9 +20,3 @@ RewriteOptions inherit
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
-RewriteCond %{HTTPS} off
-RewriteCond %{HTTP:X-Forwarded-SSL} !on
-RewriteCond %{HTTP_HOST} ^mksaoverseasltd\.com$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.mksaoverseasltd\.com$
-RewriteRule ^/?$ "https\:\/\/mksaoverseasltd\.com\/" [R=301,L]
-

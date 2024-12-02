@@ -8,19 +8,29 @@
             </div>
         </div>
     </div>
-
-    <section class="team-slills" style="padding-top: 50px; padding-bottom: 50px;">
-        <div class="container mb-80 mt-50">
+    <section class="team-slills">
+        <div class="container">
+            <h3 class="text-center pb-3">Our Events</h3>
             <div class="row">
-                 <div class="col-lg-12 mb-40 mx-auto">
-                    <div class="card py-4 px-3 shadow-sm">
-                        @foreach($event as $val)
-                            <h3 style="text-align: center; font-size: 24px !important;">{{$val->heading}}</h3>
-                            <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="" style="width:450px; height:275px; text-align: center;">
-                            <p class="">{!! $val->details !!}</p>
-                        @endforeach
+                @foreach($event as $val)
+                    <div class="col-12 col-sm-6 col-md-4 mt-3">
+                        <div class="certificate_item">
+                            <h6>{{ $val->title}}</h6>
+                            <div style="position: relative; border: 0px solid #1b1225; height: 375px;" class="w-100">
+                                @if(pathinfo($val->image, PATHINFO_EXTENSION) == 'pdf')
+                                    <embed src="{{ asset('img/' . $val->image) }}" type="application/pdf" style="height: 100%; width: 100%;" />
+                                    <a href="{{ asset('img/' . $val->image) }}" download class="btn btn-secondary"
+                                       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><i class="fa fa-download"></i>
+                                    </a>
+                                @else
+                                    <img class="w-100" src="{{ asset('img/' . $val->image) }}" style="border: 2px solid #1b1225 !important; height: 375px;" />
+                                @endif
+                            </div>
+                            <p class="text-justify mt-2 font-weight-bold">{{ $val->heading ?? '' }}</p>
+                            <p class="mt-0" style="text-align: justify !important;">{!! \Illuminate\Support\Str::words(strip_tags($val->details), 50,'....')  !!}</p>
+                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -30,6 +40,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="partner_title">
+                            <h3>OUR PARTNER</h3>
+                        </div>
                         <div class="partners">
                             <div class="owl-carousel owl-theme home-client-carousel">
                                 @foreach($partner as $val)
