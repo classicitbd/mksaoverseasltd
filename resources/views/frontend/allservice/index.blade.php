@@ -8,7 +8,7 @@
                 <ul id="breadcrumbs" class="breadcrumbs none-style">
                     <li><a href="{{url('/home')}}">Home</a></li>
                     <li class="active">All-Service</li>
-                </ul>    
+                </ul>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="space-55"></div>
             <div class="row">
-                @foreach($service as $val) 
+                @foreach($service as $val)
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="icon-box-s2 s1 pb-60">
                         <div class="icon-main"><span class="{!! $val->icon !!}"></span></div>
@@ -38,7 +38,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="elemnts-flip-boxed">
         <div class="container">
             <div class="row">
@@ -75,17 +75,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="partner_title">
-                        <h3>OUR PARTNER</h3>
-                    </div>
                     <div class="partners">
-                        <div class="owl-carousel owl-theme home-client-carousel"> 
-                            @foreach($partner as $val)     
+                        <div class="owl-carousel owl-theme home-client-carousel">
+                            @foreach($partner as $val)
                             <div class="partners-slide">
                                 <a href="#" class="client-logo">
                                     <figure class="partners-slide-inner">
                                         <img class="partners-slide-image" src="{{ asset('img/' . $val->image) }}" alt="">
-                                    </figure>                             
+                                    </figure>
                                 </a>
                             </div>
                             @endforeach
