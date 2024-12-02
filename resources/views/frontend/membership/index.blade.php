@@ -14,10 +14,19 @@
             <h3 class="text-center pb-3">Our Membership</h3>
             <div class="row">
                 @foreach($membership as $val)
-                    <div class="col-12 col-sm-6 col-md-4">
+                    <div class="col-12 col-sm-6 col-md-4 mt-3">
                         <div class="certificate_item">
                             <h6>{{ $val->title}}</h6>
-                            <img class="w-100" src="{{ asset('img/' . $val->image) }}" style="border: 2px solid #1b1225 !important; height: 375px;" />
+                            <div style="position: relative; border: 0px solid #1b1225; height: 375px;" class="w-100">
+                                @if(pathinfo($val->image, PATHINFO_EXTENSION) == 'pdf')
+                                    <embed src="{{ asset('img/' . $val->image) }}" type="application/pdf" style="height: 100%; width: 100%; border: 2px solid #1b1225 !important;" />
+                                    <a href="{{ asset('img/' . $val->image) }}" download class="btn btn-secondary"
+                                       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><i class="fa fa-download"></i>
+                                    </a>
+                                @else
+                                    <img class="w-100" src="{{ asset('img/' . $val->image) }}" style="border: 2px solid #1b1225 !important; height: 375px;" />
+                                @endif
+                            </div>
                             <p style="text-align: justify !important;">{!! \Illuminate\Support\Str::words(strip_tags($val->details), 50,'....')  !!}</p>
                         </div>
                     </div>
@@ -32,6 +41,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="partner_title">
+                        <h3>OUR PARTNER</h3>
+                    </div>
                     <div class="partners">
                         <div class="owl-carousel owl-theme home-client-carousel">
                             @foreach($partner as $val)

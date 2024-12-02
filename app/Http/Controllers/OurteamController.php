@@ -11,19 +11,7 @@ class OurteamController extends Controller
 {
     public function index()
     {
-        $data['directorTeam'] = Team::where('type', 'Managing Director')
-                                ->select('id', 'name', 'qualification', 'designation', 'details', 'type', 'twitter', 'facebook', 'instagram', 'linkedin', 'image')
-                                ->get();
-
-        $data['marketingTeam'] = Team::where('type', 'Sales & Marketing')
-                                ->select('id', 'name', 'qualification', 'designation', 'details', 'type', 'twitter', 'facebook', 'instagram', 'linkedin', 'image')
-                                ->get();
-
-        $data['accountTeam'] = Team::where('type', 'Accounts Management and Executives')
-                                ->select('id', 'name', 'qualification', 'designation', 'details', 'type', 'twitter', 'facebook', 'instagram', 'linkedin', 'image')
-                                ->get();
-
-
+        $data['teams'] = Team::select('id', 'name', 'qualification', 'designation', 'details', 'type', 'twitter', 'facebook', 'instagram', 'linkedin', 'image')->get();
 
         $data['teammember'] = Teammember::select('id', 'tm_name')->get();
 

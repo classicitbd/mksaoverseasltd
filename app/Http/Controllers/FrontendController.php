@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Career;
 use App\Models\Frontend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -18,6 +19,8 @@ use App\Models\Event;
 use App\Models\Slider;
 use App\Models\Productcategory;
 use App\Models\Product;
+use App\Models\Aboutus;
+use App\Models\Business;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\DB;
 
@@ -51,13 +54,23 @@ class FrontendController extends Controller
         $data['productcategory'] = Productcategory::all();
         $data['product'] = Product::all();
         $data['sliders'] = Slider::where('status',1)->get();
+        $data['aboutus'] = Aboutus::get();
+        $data['service_unit'] = Business::get();
         return view('frontend.home', $data);
     }
 
     public function event()
     {
         $data['partner'] = Partner::select('id','image')->get();
-        $data['event'] = Event::all();
+        $data['event'] = Event::latest()->get();
         return view('frontend.event.index', $data);
+    }
+
+
+    public function career()
+    {
+        $data['partner'] = Partner::select('id','image')->get();
+        $data['career'] = Career::latest()->get();
+        return view('frontend.career.index', $data);
     }
 }

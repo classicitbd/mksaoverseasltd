@@ -33,19 +33,17 @@
                       <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Menu Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Submenu Name</th>
-                      <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Icon</th> -->
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                 </thead>
                 <tbody> 
-                    @forelse ($submenu as $submenu)
+                    @forelse ($submenu as $key=> $submenu)
                     <tr class="odd">
-                        <td>{{$submenu-> id}}</td>
+                        <td>{{ $key+1 }}</td>
                         <td>{{$submenu-> m_name}}</td>
                         <td>{{$submenu-> submenu_name}}</td>
                         <td class="text-right py-0 align-middle">
 							<div class="btn-group btn-group-sm">
-                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#view_submenu"><i class="fas fa-eye"></i></a>&nbsp;
 								<button type="button" value="{{$submenu->id}}" class="btn btn-primary" id="editsubmenu" ><i class="fas fa-pencil-alt" ></i></button>&nbsp;
                                 <button type="button" value="{{$submenu->id}}" class="btn btn-danger" id="submenuDbtn" ><i class="fas fa-trash"></i> </button>
 							</div>

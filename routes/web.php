@@ -61,6 +61,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\CareerController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -113,6 +115,10 @@ Route::get('/missionvission',[MissionvissionController::class,'index' ]);
 
 ////////////////////Events/////////////////////////
 Route::get('/event',[FrontendController::class,'event' ]);
+
+
+////////////////////Career/////////////////////////
+Route::get('/career',[FrontendController::class,'career' ]);
 
 ////////////////////Logo & Profile/////////////////////////
 Route::get('/logoprofile',[LogoprofileController::class,'index' ]);
@@ -227,7 +233,9 @@ Route::resource('company', App\Http\Controllers\CompanyController::class);
 Route::resource('quality-technology', App\Http\Controllers\QualityController::class);
 
 ////////////////////All-Events/////////////////////////////////
-Route::resource('events', App\Http\Controllers\EventController::class);
+Route::resource('events', EventController::class);
+    Route::delete('delete-event',[EventController::class, 'destroy']);
+
 
 
 ////////////////////About-categories/////////////////////////
@@ -246,9 +254,7 @@ Route::delete('delete-director',[DirectorController::class,'destroy' ]);
 
 ////////////////////Mission/////////////////////////
 Route::resource('mission', MissionController::class);
-Route::get('edit-mission/{id}',[MissionController::class,'edit' ]);
-Route::put('mission-update',[MissionController::class,'update' ]);
-Route::delete('delete-mission',[MissionController::class,'destroy' ]);
+
 
 
 ////////////////////Slider/////////////////////////
@@ -294,26 +300,24 @@ Route::post('/settings/update', [SettingController::class, 'update'])->name('upd
 
 
 ////////////////////Business-categories/////////////////////////
-Route::resource('businesscategories', BusinesscategoryController::class);
-Route::get('edit-businesscategories/{id}',[BusinesscategoryController::class,'edit' ]);
-Route::put('businesscategories-update',[BusinesscategoryController::class,'update' ]);
-Route::delete('delete-businesscategories',[BusinesscategoryController::class,'destroy' ]);
+//Route::resource('businesscategories', BusinesscategoryController::class);
+//Route::get('edit-businesscategories/{id}',[BusinesscategoryController::class,'edit' ]);
+//Route::put('businesscategories-update',[BusinesscategoryController::class,'update' ]);
+//Route::delete('delete-businesscategories',[BusinesscategoryController::class,'destroy' ]);
 
 
 
 ////////////////////Business/////////////////////////
 Route::resource('business', BusinessController::class);
-Route::get('edit-business/{id}',[BusinessController::class,'edit' ]);
-Route::put('business-update',[BusinessController::class,'update' ]);
 Route::delete('delete-business',[BusinessController::class,'destroy' ]);
 
 
 
 ////////////////////Additional-Image/////////////////////////
-Route::resource('additionalimage', AdditionalimageController::class);
-Route::get('edit-additionalimage/{id}',[AdditionalimageController::class,'edit' ]);
-Route::put('additionalimage-update',[AdditionalimageController::class,'update' ]);
-Route::delete('delete-additionalimage',[AdditionalimageController::class,'destroy' ]);
+//Route::resource('additionalimage', AdditionalimageController::class);
+//Route::get('edit-additionalimage/{id}',[AdditionalimageController::class,'edit' ]);
+//Route::put('additionalimage-update',[AdditionalimageController::class,'update' ]);
+//Route::delete('delete-additionalimage',[AdditionalimageController::class,'destroy' ]);
 
 
 
@@ -375,6 +379,9 @@ Route::get('edit-ourclient/{id}',[OurclientController::class,'edit' ]);
 Route::put('ourclient-update',[OurclientController::class,'update' ]);
 Route::delete('delete-ourclient',[OurclientController::class,'destroy' ]);
 
+//////////////////Career///////////////////////////////
+Route::resource('careers', CareerController::class);
+Route::delete('/delete-career', [CareerController::class, 'destroy'])->name('delete.career');
 
 ////////////////////Membership/////////////////////////
 Route::resource('/all-membership', MembershipController::class);
